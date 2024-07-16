@@ -24,12 +24,15 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.jetbrains.annotations.VisibleForTesting;
 
 /**
- * Uses {@link org.mockito.Mockito#mock(Class)} to get a logger that is adapted for {@link System.Logger}.
+ * Uses {@link org.mockito.Mockito#mock(Class, String)} to get a logger that is adapted for {@link System.Logger}.
  */
 public class MockitoLoggerFinder extends LoggerFinder {
 
   private final Map<String, Logger> loggers;
 
+  /**
+   * Create a map-based logger finder. The finder uses a concurrent map: a logger name is a key.
+   */
   public MockitoLoggerFinder() {
     this(new ConcurrentHashMap<>());
   }
@@ -48,7 +51,7 @@ public class MockitoLoggerFinder extends LoggerFinder {
    */
   @Override
   public Logger getLogger(String name, Module module) {
-    return loggers.computeIfAbsent(name, key -> mock(Logger.class));
+    return loggers.computeIfAbsent(name, key -> mock(Logger.class, "Mock for logger " + key));
   }
 
 }

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Mock of JDK Platform Logging</title>
+</head>
+<body>
+<h1>Mock of JDK Platform Logging</h1>
+<p>JDK Platform Logging Service with mocked loggers backed by <a href="https://site.mockito.org/">Mockito</a>.</p>
+<p id="badges">
+  <a href="https://app.codacy.com/gh/vitalijr2/mock-jdk-platform-logging/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade"><img
+      alt="Codacy Badge" src="https://app.codacy.com/project/badge/Grade/9be380deaf3e40138ad306a40532289c"></a>
+  <a href="https://app.codacy.com/gh/vitalijr2/mock-jdk-platform-logging/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage"><img
+      alt="Codacy Coverage" src="https://app.codacy.com/project/badge/Coverage/9be380deaf3e40138ad306a40532289c"></a>
+  <a href="https://libraries.io/github/vitalijr2/mock-jdk-platform-logging"><img
+      alt="Libraries.io dependency status for GitHub repo"
+      src="https://img.shields.io/librariesio/github/vitalijr2/mock-jdk-platform-logging"></a>
+  <a href="https://www.oracle.com/java/technologies/downloads/#java11"><img
+      alt="Java Version"
+      src="https://img.shields.io/static/v1?label=java&message=11&color=blue&logo=java&logoColor=E23D28"></a>
+</p>
+Example:
+<pre><code class="language-java">
+  // the static logger instance
+  private static Logger logger;
+
+  // initialize it once
+  {@literal @}BeforeAll
+  static void setUpClass() {
+    logger = System.getLogger("test");
+  }
+
+  // clean it after each test
+  {@literal @}AfterEach
+  void tearDown() {
+    clearInvocations(logger);
+  }
+
+  // use the mock in a test
+  {@literal @}DisplayName("Test")
+  {@literal @}ParameterizedTest
+  {@literal @}ValueSource(strings = {"TRACE", "DEBUG", "INFO", "WARNING", "ERROR"})
+  void test(Level level) {
+    // given
+    var logger = System.getLogger("test")
+
+    // when
+    logger.log(level, "test message");
+
+    // then
+    verify(logger).log(level, "test message");
+  }
+</code></pre>
+</body>
+</html>

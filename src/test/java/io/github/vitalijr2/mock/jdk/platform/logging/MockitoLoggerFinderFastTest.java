@@ -5,6 +5,8 @@ import static org.hamcrest.collection.IsMapContaining.hasEntry;
 import static org.hamcrest.collection.IsMapWithSize.aMapWithSize;
 import static org.hamcrest.core.Is.isA;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.StringStartsWith.startsWith;
+import static org.hamcrest.object.HasToString.hasToString;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.mock;
 
@@ -30,7 +32,8 @@ class MockitoLoggerFinderFastTest {
 
     // then
     assertAll("Logger was created", () -> assertThat("size", loggers, aMapWithSize(1)),
-        () -> assertThat("entry", loggers, hasEntry(equalTo("test"), isA(Logger.class))));
+        () -> assertThat("entry", loggers, hasEntry(equalTo("test"), isA(Logger.class))),
+        () -> assertThat(loggers.values().iterator().next(), hasToString("Mock for logger test")));
   }
 
   @DisplayName("Reuse existing logger")
@@ -45,8 +48,8 @@ class MockitoLoggerFinderFastTest {
 
     // then
     assertAll("Logger was reused", () -> assertThat("size", loggers, aMapWithSize(1)),
-        () -> assertThat("entry", loggers, hasEntry(equalTo("test"), isA(Logger.class))));
-    ;
+        () -> assertThat("entry", loggers, hasEntry(equalTo("test"), isA(Logger.class))),
+        () -> assertThat(loggers.values().iterator().next(), hasToString(startsWith("Mock for Logger, hashCode:"))));
   }
 
 }

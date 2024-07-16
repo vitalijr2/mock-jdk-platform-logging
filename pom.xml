@@ -5,6 +5,54 @@
   <artifactId>mock-jdk-platform-logging</artifactId>
   <build>
     <defaultGoal>clean verify</defaultGoal>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <configuration>
+            <additionalJOptions>
+              <additionalJOption>
+                -J-Dhttp.agent=maven-javadoc-plugin_${project.groupId}:${project.artifactId}
+              </additionalJOption>
+            </additionalJOptions>
+            <additionalOptions>
+              <additionalOption>--allow-script-in-comments</additionalOption>
+            </additionalOptions>
+            <bottom><![CDATA[
+<script type="text/javascript" src="{@docRoot}/resources/prism.js"></script>
+							]]></bottom>
+            <docfilessubdirs>true</docfilessubdirs>
+            <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+            <links>
+              <link>https://javadoc.io/doc/org.mockito/mockito-core/${mockito.version}/</link>
+            </links>
+            <offline>false</offline>
+            <show>public</show>
+            <top><![CDATA[
+<link rel="stylesheet" type="text/css" href="{@docRoot}/resources/prism.css"/>
+<link rel="stylesheet" type="text/css" href="{@docRoot}/resources/mock-jdk-platform-logging.css"/>
+							]]></top>
+          </configuration>
+          <groupId>org.apache.maven.plugins</groupId>
+          <version>${javadoc-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-source-plugin</artifactId>
+          <groupId>org.apache.maven.plugins</groupId>
+          <version>3.3.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>sign-maven-plugin</artifactId>
+          <groupId>org.simplify4u.plugins</groupId>
+          <version>1.1.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>central-publishing-maven-plugin</artifactId>
+          <groupId>org.sonatype.central</groupId>
+          <version>0.4.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <artifactId>maven-clean-plugin</artifactId>
@@ -89,7 +137,7 @@
           </properties>
         </configuration>
         <groupId>org.apache.maven.plugins</groupId>
-        <version>3.3.0</version>
+        <version>3.3.1</version>
       </plugin>
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
@@ -102,17 +150,11 @@
           </archive>
         </configuration>
         <groupId>org.apache.maven.plugins</groupId>
-        <version>3.4.1</version>
+        <version>3.4.2</version>
       </plugin>
       <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
         <configuration>
-          <!--
-          <classpathDependencyExcludes>
-            <classpathDependencyExclude>com.ocarlsen.test:mock-slf4j-impl
-            </classpathDependencyExclude>
-          </classpathDependencyExcludes>
-          -->
           <forkCount>1</forkCount>
           <includes>
             <include>**/*Test.java</include>
@@ -131,7 +173,7 @@
           </execution>
         </executions>
         <groupId>org.apache.maven.plugins</groupId>
-        <version>3.3.0</version>
+        <version>3.3.1</version>
       </plugin>
       <plugin>
         <artifactId>jacoco-maven-plugin</artifactId>
@@ -235,6 +277,12 @@
       <version>${junit-jupiter.version}</version>
     </dependency>
     <dependency>
+      <artifactId>junit-jupiter-params</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <scope>test</scope>
+      <version>${junit-jupiter.version}</version>
+    </dependency>
+    <dependency>
       <artifactId>mockito-junit-jupiter</artifactId>
       <groupId>org.mockito</groupId>
       <scope>test</scope>
@@ -269,11 +317,72 @@
   </licenses>
   <modelVersion>4.0.0</modelVersion>
   <name>Mock of JDK Platform Logging</name>
+  <profiles>
+    <profile>
+      <build>
+        <defaultGoal>clean deploy</defaultGoal>
+        <plugins>
+          <plugin>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <id>attach-javadocs</id>
+              </execution>
+            </executions>
+            <groupId>org.apache.maven.plugins</groupId>
+          </plugin>
+          <plugin>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <id>attach-sources</id>
+              </execution>
+            </executions>
+            <groupId>org.apache.maven.plugins</groupId>
+          </plugin>
+          <plugin>
+            <artifactId>sign-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+            <groupId>org.simplify4u.plugins</groupId>
+          </plugin>
+          <plugin>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <configuration>
+              <publishingServerId>central</publishingServerId>
+              <tokenAuth>true</tokenAuth>
+            </configuration>
+            <extensions>true</extensions>
+            <groupId>org.sonatype.central</groupId>
+          </plugin>
+        </plugins>
+      </build>
+      <id>release</id>
+    </profile>
+  </profiles>
   <properties>
     <java.version>11</java.version>
-    <junit-jupiter.version>5.10.2</junit-jupiter.version>
+    <javadoc-plugin.version>3.7.0</javadoc-plugin.version>
+    <junit-jupiter.version>5.10.3</junit-jupiter.version>
     <mockito.version>5.12.0</mockito.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  <scm>
+    <connection>scm:git:https://github.com/vitalijr2/mock-jdk-platform-logging.git</connection>
+    <developerConnection>scm:git:git@github.com:vitalijr2/mock-jdk-platform-logging.git</developerConnection>
+    <url>https://github.com/vitalijr2/mock-jdk-platform-logging</url>
+  </scm>
+  <url>https://github.com/vitalijr2/mock-jdk-platform-logging</url>
   <version>1.0.0-SNAPSHOT</version>
 </project>

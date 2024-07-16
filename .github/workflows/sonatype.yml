@@ -25,4 +25,4 @@ jobs:
           SIGN_KEY_PASS: ${{ secrets.SIGN_KEY_PASS }}
           SONATYPE_TOKEN_USERNAME: ${{ secrets.SONATYPE_TOKEN_USERNAME }}
           SONATYPE_TOKEN_PASSWORD: ${{ secrets.SONATYPE_TOKEN_PASSWORD }}
-        run: ./mvnw --batch-mode -s .mvn/ci_settings.xml -pl core,logger,json-logger,. -am -ntp -DskipTests -Prelease
+        run: ./mvnw --batch-mode -s .mvn/ci_settings.xml -am -ntp -DskipTests -Prelease
