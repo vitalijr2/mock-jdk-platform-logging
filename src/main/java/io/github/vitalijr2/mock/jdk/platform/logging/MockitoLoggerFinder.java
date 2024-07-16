@@ -48,7 +48,7 @@ public class MockitoLoggerFinder extends LoggerFinder {
    */
   @Override
   public Logger getLogger(String name, Module module) {
-    return loggers.computeIfAbsent(name, key -> mock(Logger.class));
+    return loggers.computeIfAbsent(name, key -> mock(Logger.class, "Mock for logger " + key));
   }
 
 }
