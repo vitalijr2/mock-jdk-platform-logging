@@ -1,37 +1,45 @@
 package io.github.vitalijr2.mock.jdk.platform.logging;
 
+import static org.mockito.Mockito.clearInvocations;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-@ExtendWith(MockitoExtension.class)
 @Tag("slow")
 class MockitoLoggerFinderSlowTest {
 
-  @Mock
-  private Logger logger;
+  private static Logger logger;
 
-  @BeforeEach
-  void setUp() {
+  @BeforeAll
+  static void setUpClass() {
     logger = System.getLogger("test");
   }
 
+  @AfterEach
+  void tearDown() {
+    clearInvocations(logger);
+  }
+
   @DisplayName("Test")
-  @Test
-  void test() {
+  @ParameterizedTest
+  @ValueSource(strings = {"TRACE", "DEBUG", "INFO", "WARNING", "ERROR"})
+  void test(Level level) {
+    // given
+    verifyNoInteractions(logger);
+
     // when
-    System.getLogger("test").log(Level.INFO, "test message");
+    System.getLogger("test").log(level, "test message");
 
     // then
-    verify(logger).log(Level.INFO, "test message");
+    verify(logger).log(level, "test message");
   }
 
 }

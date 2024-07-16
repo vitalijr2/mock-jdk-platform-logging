@@ -46,7 +46,6 @@ class MockitoLoggerFinderFastTest {
     // then
     assertAll("Logger was reused", () -> assertThat("size", loggers, aMapWithSize(1)),
         () -> assertThat("entry", loggers, hasEntry(equalTo("test"), isA(Logger.class))));
-    ;
   }
 
 }
