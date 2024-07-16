@@ -2,6 +2,11 @@
 
 JDK Platform Logging Service with mocked loggers backed by [Mockito][].
 
+[![Codacy Badge][codacy-badge]][codacy-badge-link]
+[![Codacy Coverage][codacy-coverage]][codacy-coverage-link]  
+[![Libraries.io dependency status for GitHub repo][dependency-status]][dependencies]
+[![Java Version][java-version]][jdk-download]
+
 ## How to use
 
 Just put to your POM:
@@ -87,6 +92,22 @@ limitations under the License.
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 [Mockito]: https://site.mockito.org
+
+[codacy-badge]: https://app.codacy.com/project/badge/Grade/9be380deaf3e40138ad306a40532289c
+
+[codacy-badge-link]: https://app.codacy.com/gh/vitalijr2/mock-jdk-platform-logging/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
+
+[codacy-coverage]: https://app.codacy.com/project/badge/Coverage/9be380deaf3e40138ad306a40532289c
+
+[codacy-coverage-link]: https://app.codacy.com/gh/vitalijr2/mock-jdk-platform-logging/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage
+
+[dependency-status]: https://img.shields.io/librariesio/github/vitalijr2/mock-jdk-platform-logging
+
+[dependencies]: https://libraries.io/github/vitalijr2/mock-jdk-platform-logging
+
+[java-version]: https://img.shields.io/static/v1?label=java&message=11&color=blue&logo=java&logoColor=E23D28
+
+[jdk-download]: https://www.oracle.com/java/technologies/downloads/#java11
 
 [slf4j-mock]: https://github.com/s4u/slf4j-mock
 
