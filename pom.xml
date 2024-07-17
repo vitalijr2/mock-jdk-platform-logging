@@ -8,6 +8,34 @@
     <pluginManagement>
       <plugins>
         <plugin>
+          <artifactId>maven-invoker-plugin</artifactId>
+          <configuration>
+            <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+            <goals>
+              <goal>clean</goal>
+              <goal>verify</goal>
+            </goals>
+            <invokerPropertiesFile>invoker.properties</invokerPropertiesFile>
+            <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
+            <pomIncludes>
+              <pomInclude>*/pom.xml</pomInclude>
+            </pomIncludes>
+            <postBuildHookScript>verify</postBuildHookScript>
+            <settingsFile>src/it/settings.xml</settingsFile>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>install</goal>
+                <goal>run</goal>
+              </goals>
+              <id>integration-test</id>
+            </execution>
+          </executions>
+          <groupId>org.apache.maven.plugins</groupId>
+          <version>3.7.0</version>
+        </plugin>
+        <plugin>
           <artifactId>maven-javadoc-plugin</artifactId>
           <configuration>
             <additionalJOptions>
@@ -369,6 +397,17 @@
         </plugins>
       </build>
       <id>release</id>
+    </profile>
+    <profile>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-invoker-plugin</artifactId>
+            <groupId>org.apache.maven.plugins</groupId>
+          </plugin>
+        </plugins>
+      </build>
+      <id>run-its</id>
     </profile>
   </profiles>
   <properties>
