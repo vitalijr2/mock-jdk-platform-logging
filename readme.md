@@ -5,7 +5,9 @@ JDK Platform Logging Service with mocked loggers backed by [Mockito][].
 [![Codacy Badge][codacy-badge]][codacy-badge-link]
 [![Codacy Coverage][codacy-coverage]][codacy-coverage-link]  
 [![Libraries.io dependency status for GitHub repo][dependency-status]][dependencies]
-[![Java Version][java-version]][jdk-download]
+[![Java Version][java-version]][jdk-download]  
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.vitalijr2.logging/mock-jdk-platform-logging)](https://search.maven.org/artifact/io.github.vitalijr2.logging/mock-jdk-platform-logging)
+[![Javadoc](https://javadoc.io/badge2/io.github.vitalijr2.logging/mock-jdk-platform-logging/javadoc.svg)](https://javadoc.io/doc/io.github.vitalijr2.logging/mock-jdk-platform-logging)
 
 ## How to use
 
@@ -17,7 +19,6 @@ Just put to your POM:
       <scope>test</scope>
       <version>1.0.0</version>
     </dependency>
-
 ```
 
 The most basic usage example looks like this:
