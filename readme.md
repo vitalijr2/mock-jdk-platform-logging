@@ -5,26 +5,37 @@ JDK Platform Logging Service with mocked loggers backed by [Mockito][].
 [![Codacy Badge][codacy-badge]][codacy-badge-link]
 [![Codacy Coverage][codacy-coverage]][codacy-coverage-link]  
 [![Libraries.io dependency status for GitHub repo][dependency-status]][dependencies]
-[![Java Version][java-version]][jdk-download]
+[![Java Version][java-version]][jdk-download]  
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.vitalijr2.logging/mock-jdk-platform-logging)](https://search.maven.org/artifact/io.github.vitalijr2.logging/mock-jdk-platform-logging)
+[![Javadoc](https://javadoc.io/badge2/io.github.vitalijr2.logging/mock-jdk-platform-logging/javadoc.svg)](https://javadoc.io/doc/io.github.vitalijr2.logging/mock-jdk-platform-logging)
 
 ## How to use
 
 Just put to your POM:
 ```xml
-  <dependencies>
-    ...
     <dependency>
       <artifactId>mock-jdk-platform-logging</artifactId>
       <groupId>io.github.vitalijr2.logging</groupId>
       <scope>test</scope>
       <version>1.0.0</version>
     </dependency>
-    ...
-  </dependencies>
-
 ```
 
-Example:
+The most basic usage example looks like this:
+```java
+  @Test
+  void helloWorld() {
+    var helloService = new HelloService();
+
+    assertDoesNotThrow(helloService::sayHelloWorld);
+
+    verify(System.getLogger("HelloService")).log(System.Logger.Level.INFO, "Hello World!");
+  }
+```
+See more details at [HelloServiceBasicTest.java](src/it/hello-world/src/test/java/example/hello/HelloServiceBasicTest.java)
+
+It should be taken into account that all loggers are initialized only once during the run of tests.
+Therefore, a more complex example cleans the loggers before (or after) each test:
 ```java
   // the static logger instance
   private static Logger logger;
@@ -56,6 +67,7 @@ Example:
     verify(logger).log(level, "test message");
   }
 ```
+See more details at [HelloServiceFullTest.java](src/it/hello-world/src/test/java/example/hello/HelloServiceFullTest.java)
 
 ## Credits
 
@@ -74,7 +86,7 @@ See [Changelog](changelog.md)
 
 ## License
 
-Copyright 2023-2024 Vitalij Berdinskih
+Copyright 2024 Vitalij Berdinskih
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
