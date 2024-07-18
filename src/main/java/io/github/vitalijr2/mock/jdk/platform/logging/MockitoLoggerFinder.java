@@ -54,4 +54,8 @@ public class MockitoLoggerFinder extends LoggerFinder {
     return loggers.computeIfAbsent(name, key -> mock(Logger.class, "Mock for logger " + key));
   }
 
+  Map<String, Logger> getLoggers() {
+    return loggers;
+  }
+
 }
