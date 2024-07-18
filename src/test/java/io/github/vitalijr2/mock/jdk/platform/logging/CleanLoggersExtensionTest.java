@@ -42,10 +42,10 @@ class CleanLoggersExtensionTest {
 
       // when
       var exception = assertThrows(ExtensionConfigurationException.class,
-          CleanLoggersExtension::getMockitoLoggerFinder);
+          CleanLoggersExtension::getMockLoggerFinder);
 
       // then
-      assertEquals("The logger finder is not a MockitoLoggerFinder", exception.getMessage());
+      assertEquals("The logger finder is not a MockLoggerFinder", exception.getMessage());
     }
   }
 

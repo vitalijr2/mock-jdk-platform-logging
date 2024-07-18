@@ -26,19 +26,19 @@ import org.jetbrains.annotations.VisibleForTesting;
 /**
  * Uses {@link org.mockito.Mockito#mock(Class, String)} to get a logger that is adapted for {@link System.Logger}.
  */
-public class MockitoLoggerFinder extends LoggerFinder {
+public class MockLoggerFinder extends LoggerFinder {
 
   private final Map<String, Logger> loggers;
 
   /**
    * Create a map-based logger finder. The finder uses a concurrent map: a logger name is a key.
    */
-  public MockitoLoggerFinder() {
+  public MockLoggerFinder() {
     this(new ConcurrentHashMap<>());
   }
 
   @VisibleForTesting
-  MockitoLoggerFinder(Map<String, Logger> loggers) {
+  MockLoggerFinder(Map<String, Logger> loggers) {
     this.loggers = loggers;
   }
 

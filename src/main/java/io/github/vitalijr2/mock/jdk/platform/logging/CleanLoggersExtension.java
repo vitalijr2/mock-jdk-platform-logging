@@ -16,7 +16,17 @@ import org.junit.platform.commons.logging.LoggerFactory;
 public class CleanLoggersExtension implements AfterEachCallback, BeforeAllCallback, BeforeEachCallback {
 
   private final Logger logger = LoggerFactory.getLogger(CleanLoggersExtension.class);
-  private MockitoLoggerFinder loggerFinder;
+  private MockLoggerFinder loggerFinder;
+
+  @VisibleForTesting
+  static MockLoggerFinder getMockLoggerFinder() {
+    var loggerFinder = LoggerFinder.getLoggerFinder();
+    if (loggerFinder instanceof MockLoggerFinder) {
+      return (MockLoggerFinder) loggerFinder;
+    } else {
+      throw new ExtensionConfigurationException("The logger finder is not a MockLoggerFinder");
+    }
+  }
 
   @Override
   public void afterEach(ExtensionContext extensionContext) {
@@ -25,7 +35,7 @@ public class CleanLoggersExtension implements AfterEachCallback, BeforeAllCallba
 
   @Override
   public void beforeAll(ExtensionContext extensionContext) {
-    loggerFinder = getMockitoLoggerFinder();
+    loggerFinder = getMockLoggerFinder();
     logger.trace(() -> "Initialize the logger finder");
   }
 
@@ -40,16 +50,6 @@ public class CleanLoggersExtension implements AfterEachCallback, BeforeAllCallba
       reset(logger);
     });
     logger.debug(() -> "Clean and reset the loggers: " + String.join(", ", loggerFinder.getLoggers().keySet()));
-  }
-
-  @VisibleForTesting
-  static MockitoLoggerFinder getMockitoLoggerFinder() {
-    var loggerFinder = LoggerFinder.getLoggerFinder();
-    if (loggerFinder instanceof MockitoLoggerFinder) {
-      return (MockitoLoggerFinder) loggerFinder;
-    } else {
-      throw new ExtensionConfigurationException("The logger finder is not a MockitoLoggerFinder");
-    }
   }
 
 }
