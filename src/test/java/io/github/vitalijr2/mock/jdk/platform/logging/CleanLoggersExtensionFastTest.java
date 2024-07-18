@@ -31,13 +31,12 @@ class CleanLoggersExtensionFastTest {
   private Logger extensionLogger;
 
   private CleanLoggersExtension extension;
-  private MockLoggerFinder loggerFinder;
   private System.Logger firstLogger;
   private System.Logger secondLogger;
 
   @BeforeEach
   void setUp() {
-    loggerFinder = new MockLoggerFinder();
+    var loggerFinder = new MockLoggerFinder();
     extension = new CleanLoggersExtension(loggerFinder, extensionLogger);
     firstLogger = loggerFinder.getLogger("first", getClass().getModule());
     secondLogger = loggerFinder.getLogger("second", getClass().getModule());

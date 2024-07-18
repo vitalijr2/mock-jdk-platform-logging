@@ -7,29 +7,16 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 
 import java.lang.System.LoggerFinder;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionConfigurationException;
-import org.junit.jupiter.api.extension.ExtensionContext;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 @Tag("slow")
 class CleanLoggersExtensionSlowTest {
-
-  @Mock
-  private ExtensionContext extensionContext;
-
-  private CleanLoggersExtension extension;
-
-  @BeforeEach
-  void setUp() {
-    extension = new CleanLoggersExtension();
-  }
 
   @DisplayName("Unknown logger finder")
   @Test
