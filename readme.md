@@ -11,63 +11,93 @@ JDK Platform Logging Service with mocked loggers backed by [Mockito][].
 
 ## How to use
 
-Just put to your POM:
+Just put a test dependency to your POM:
 ```xml
-    <dependency>
-      <artifactId>mock-jdk-platform-logging</artifactId>
-      <groupId>io.github.vitalijr2.logging</groupId>
-      <scope>test</scope>
-      <version>1.0.0</version>
-    </dependency>
+<dependency>
+    <artifactId>mock-jdk-platform-logging</artifactId>
+    <groupId>io.github.vitalijr2.logging</groupId>
+    <scope>test</scope>
+    <version>1.0.0</version>
+</dependency>
 ```
 
 The most basic usage example looks like this:
 ```java
-  @Test
-  void helloWorld() {
+@Test
+void helloWorld() {
     var helloService = new HelloService();
 
     assertDoesNotThrow(helloService::sayHelloWorld);
 
     verify(System.getLogger("HelloService")).log(System.Logger.Level.INFO, "Hello World!");
-  }
+}
 ```
 See more details at [HelloServiceBasicTest.java](src/it/hello-world/src/test/java/example/hello/HelloServiceBasicTest.java)
 
 It should be taken into account that all loggers are initialized only once during the run of tests.
 Therefore, a more complex example cleans the loggers before (or after) each test:
 ```java
-  // the static logger instance
-  private static Logger logger;
+// the static logger instance
+private static Logger logger;
 
-  // initialize it once
-  @BeforeAll
-  static void setUpClass() {
-    logger = System.getLogger("test");
-  }
+// initialize the mock logger once
+@BeforeAll
+static void setUpClass() {
+    logger = System.getLogger("HelloService");
+}
 
-  // clean it after each test
-  @AfterEach
-  void tearDown() {
+// clean the mock logger after each test
+@AfterEach
+void tearDown() {
     clearInvocations(logger);
-  }
+}
 
-  // use the mock in a test
-  @DisplayName("Test")
-  @ParameterizedTest
-  @ValueSource(strings = {"TRACE", "DEBUG", "INFO", "WARNING", "ERROR"})
-  void test(Level level) {
-    // given
-    var logger = System.getLogger("test")
+// use the mock logger in a test
+@DisplayName("Names")
+@ParameterizedTest(name = "<{0}>")
+@ValueSource(strings = {"John", "Jane"})
+void names(String name) {
+    var helloService = new HelloService();
 
-    // when
-    logger.log(level, "test message");
+    assertDoesNotThrow(() -> helloService.sayHello(name));
 
-    // then
-    verify(logger).log(level, "test message");
-  }
+    var logger = System.getLogger("HelloService");
+
+    verify(logger).log(System.Logger.Level.INFO, "Hello " + name + "!");
+    verifyNoMoreInteractions(logger);
+}
 ```
 See more details at [HelloServiceFullTest.java](src/it/hello-world/src/test/java/example/hello/HelloServiceFullTest.java)
+
+Since the version **1.1.0** you can use the jUnit extension for automation.
+```java
+@ExtendWith(CleanLoggersExtension.class)
+class HelloServiceExtensionTest {
+
+    private static Logger logger;
+
+    @BeforeAll
+    static void setUpClass() {
+        logger = System.getLogger("HelloService");
+    }
+
+    @DisplayName("Names")
+    @ParameterizedTest(name = "<{0}>")
+    @ValueSource(strings = {"John", "Jane"})
+    void names(String name) {
+        var helloService = new HelloService();
+
+        assertDoesNotThrow(() -> helloService.sayHello(name));
+
+        var logger = System.getLogger("HelloService");
+
+        verify(logger).log(System.Logger.Level.INFO, "Hello " + name + "!");
+        verifyNoMoreInteractions(logger);
+    }
+
+}
+```
+See more details at [HelloServiceExtensionTest.java](src/it/hello-world/src/test/java/example/hello/HelloServiceExtensionTest.java)
 
 ## Credits
 

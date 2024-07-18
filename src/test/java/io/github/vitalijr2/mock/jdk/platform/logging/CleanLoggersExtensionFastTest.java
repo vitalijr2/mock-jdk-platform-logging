@@ -2,97 +2,81 @@ package io.github.vitalijr2.mock.jdk.platform.logging;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 
 import java.lang.System.Logger.Level;
-import java.lang.System.LoggerFinder;
+import java.util.function.Supplier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.ExtensionConfigurationException;
 import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.platform.commons.logging.Logger;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-@Tag("slow")
-class CleanLoggersExtensionTest {
+@Tag("fast")
+class CleanLoggersExtensionFastTest {
 
+  @Captor
+  private ArgumentCaptor<Supplier<String>> messageCaptor;
   @Mock
   private ExtensionContext extensionContext;
+  @Mock
+  private Logger extensionLogger;
 
   private CleanLoggersExtension extension;
+  private MockLoggerFinder loggerFinder;
+  private System.Logger firstLogger;
+  private System.Logger secondLogger;
 
   @BeforeEach
   void setUp() {
-    extension = new CleanLoggersExtension();
-  }
-
-  @DisplayName("Unknown logger finder")
-  @Test
-  void unknownLoggerFinder() {
-    try (var loggerFinder = mockStatic(LoggerFinder.class)) {
-      // given
-      loggerFinder.when(LoggerFinder::getLoggerFinder).thenReturn(mock(LoggerFinder.class));
-
-      // when
-      var exception = assertThrows(ExtensionConfigurationException.class,
-          CleanLoggersExtension::getMockLoggerFinder);
-
-      // then
-      assertEquals("The logger finder is not a MockLoggerFinder", exception.getMessage());
-    }
-  }
-
-  @DisplayName("Initialize a logger finder on \"before all\" step")
-  @Test
-  void initLoggerFinderOnBeforeAll() {
-    // when
-    assertDoesNotThrow(() -> extension.beforeAll(extensionContext));
-
-    // then
-    verifyNoInteractions(extensionContext);
+    loggerFinder = new MockLoggerFinder();
+    extension = new CleanLoggersExtension(loggerFinder, extensionLogger);
+    firstLogger = loggerFinder.getLogger("first", getClass().getModule());
+    secondLogger = loggerFinder.getLogger("second", getClass().getModule());
   }
 
   @DisplayName("Clean and reset loggers after each test")
   @Test
   void resetLoggersAfterEachTest() {
-    // given
-    extension.beforeAll(extensionContext);
-    var firstLogger = System.getLogger("first");
-    var secondLogger = System.getLogger("second");
+    // when
     firstLogger.log(Level.INFO, "test message");
     secondLogger.log(Level.INFO, "another test message");
 
-    // when
     assertDoesNotThrow(() -> extension.afterEach(extensionContext));
 
     // then
+    verifyNoInteractions(extensionContext);
     verifyNoInteractions(firstLogger);
     verifyNoInteractions(secondLogger);
+    verify(extensionLogger).debug(messageCaptor.capture());
+
+    assertEquals("Clean and reset the loggers: first, second", messageCaptor.getValue().get());
   }
 
   @DisplayName("Clean and reset loggers before each test")
   @Test
   void resetLoggersBeforeEachTest() {
-    // given
-    extension.beforeAll(extensionContext);
-    var firstLogger = System.getLogger("first");
-    var secondLogger = System.getLogger("second");
+    // when
     firstLogger.log(Level.INFO, "test message");
     secondLogger.log(Level.INFO, "another test message");
 
-    // when
     assertDoesNotThrow(() -> extension.beforeEach(extensionContext));
 
     // then
+    verifyNoInteractions(extensionContext);
     verifyNoInteractions(firstLogger);
     verifyNoInteractions(secondLogger);
+    verify(extensionLogger).debug(messageCaptor.capture());
+
+    assertEquals("Clean and reset the loggers: first, second", messageCaptor.getValue().get());
   }
 
 }

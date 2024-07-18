@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *	   http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,17 +21,32 @@ import static org.mockito.Mockito.reset;
 import java.lang.System.LoggerFinder;
 import org.jetbrains.annotations.VisibleForTesting;
 import org.junit.jupiter.api.extension.AfterEachCallback;
-import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionConfigurationException;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 
-public class CleanLoggersExtension implements AfterEachCallback, BeforeAllCallback, BeforeEachCallback {
+/**
+ * jUnit extension to clean and reset mock loggers.
+ */
+public class CleanLoggersExtension implements AfterEachCallback, BeforeEachCallback {
 
-  private final Logger logger = LoggerFactory.getLogger(CleanLoggersExtension.class);
-  private MockLoggerFinder loggerFinder;
+  private final MockLoggerFinder loggerFinder;
+  private final Logger extensionLogger;
+
+  /**
+   * Create an extension, initialize the MockLoggerFinder.
+   */
+  public CleanLoggersExtension() {
+    this(getMockLoggerFinder(), LoggerFactory.getLogger(CleanLoggersExtension.class));
+  }
+
+  @VisibleForTesting
+  CleanLoggersExtension(MockLoggerFinder loggerFinder, Logger extensionLogger) {
+    this.loggerFinder = loggerFinder;
+    this.extensionLogger = extensionLogger;
+  }
 
   @VisibleForTesting
   static MockLoggerFinder getMockLoggerFinder() {
@@ -43,19 +58,23 @@ public class CleanLoggersExtension implements AfterEachCallback, BeforeAllCallba
     }
   }
 
+  /**
+   * Clean and reset mock loggers after tests.
+   *
+   * @param context the current extension context; never {@code null}
+   */
   @Override
-  public void afterEach(ExtensionContext extensionContext) {
+  public void afterEach(ExtensionContext context) {
     cleanAndResetLoggers();
   }
 
+  /**
+   * Clean and reset mock loggers before tests.
+   *
+   * @param context the current extension context; never {@code null}
+   */
   @Override
-  public void beforeAll(ExtensionContext extensionContext) {
-    loggerFinder = getMockLoggerFinder();
-    logger.trace(() -> "Initialize the logger finder");
-  }
-
-  @Override
-  public void beforeEach(ExtensionContext extensionContext) {
+  public void beforeEach(ExtensionContext context) {
     cleanAndResetLoggers();
   }
 
@@ -64,7 +83,8 @@ public class CleanLoggersExtension implements AfterEachCallback, BeforeAllCallba
       clearInvocations(logger);
       reset(logger);
     });
-    logger.debug(() -> "Clean and reset the loggers: " + String.join(", ", loggerFinder.getLoggers().keySet()));
+    extensionLogger.debug(
+        () -> "Clean and reset the loggers: " + String.join(", ", loggerFinder.getLoggers().keySet()));
   }
 
 }

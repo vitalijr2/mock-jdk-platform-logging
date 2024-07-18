@@ -23,7 +23,7 @@ class HelloServiceExtensionTest {
   private static Logger logger;
 
   @BeforeAll
-  static void setUpClass() throws Exception {
+  static void setUpClass() {
     logger = System.getLogger("HelloService");
   }
 
