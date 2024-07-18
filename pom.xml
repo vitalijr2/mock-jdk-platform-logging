@@ -53,6 +53,7 @@
             <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
             <links>
               <link>https://javadoc.io/doc/org.mockito/mockito-core/${mockito.version}/</link>
+              <link>https://javadoc.io/doc/org.junit.jupiter/junit-jupiter-api/${junit-jupiter.version}/</link>
             </links>
             <offline>false</offline>
             <show>public</show>
@@ -286,18 +287,24 @@
       <version>${mockito.version}</version>
     </dependency>
     <dependency>
+      <artifactId>junit-jupiter-api</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <scope>provided</scope>
+      <version>${junit-jupiter.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>junit-platform-commons</artifactId>
+      <groupId>org.junit.platform</groupId>
+      <scope>provided</scope>
+      <version>${junit-platform.version}</version>
+    </dependency>
+    <dependency>
       <artifactId>annotations</artifactId>
       <groupId>org.jetbrains</groupId>
       <scope>provided</scope>
       <version>24.1.0</version>
     </dependency>
     <!-- test -->
-    <dependency>
-      <artifactId>junit-jupiter-api</artifactId>
-      <groupId>org.junit.jupiter</groupId>
-      <scope>test</scope>
-      <version>${junit-jupiter.version}</version>
-    </dependency>
     <dependency>
       <artifactId>junit-jupiter-engine</artifactId>
       <groupId>org.junit.jupiter</groupId>
@@ -413,6 +420,7 @@
   <properties>
     <java.version>11</java.version>
     <javadoc-plugin.version>3.7.0</javadoc-plugin.version>
+    <junit-platform.version>1.10.3</junit-platform.version>
     <junit-jupiter.version>5.10.3</junit-jupiter.version>
     <mockito.version>5.12.0</mockito.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -423,5 +431,5 @@
     <url>https://github.com/vitalijr2/mock-jdk-platform-logging</url>
   </scm>
   <url>https://github.com/vitalijr2/mock-jdk-platform-logging</url>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.1.0-SNAPSHOT</version>
 </project>

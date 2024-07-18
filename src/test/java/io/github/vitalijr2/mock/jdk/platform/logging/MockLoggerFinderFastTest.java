@@ -18,14 +18,14 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 @Tag("fast")
-class MockitoLoggerFinderFastTest {
+class MockLoggerFinderFastTest {
 
   @DisplayName("Create and add logger")
   @Test
   void createLogger() {
     // given
     var loggers = new HashMap<String, Logger>();
-    var loggerFinder = new MockitoLoggerFinder(loggers);
+    var loggerFinder = new MockLoggerFinder(loggers);
 
     // when
     loggerFinder.getLogger("test", getClass().getModule());
@@ -41,7 +41,7 @@ class MockitoLoggerFinderFastTest {
   void reuseExistingLogger() {
     // given
     var loggers = new HashMap<>(Map.of("test", mock(Logger.class)));
-    var loggerFinder = new MockitoLoggerFinder(loggers);
+    var loggerFinder = new MockLoggerFinder(loggers);
 
     // when
     loggerFinder.getLogger("test", getClass().getModule());

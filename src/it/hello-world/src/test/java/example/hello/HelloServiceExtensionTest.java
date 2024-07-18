@@ -4,31 +4,27 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.StringStartsWith.startsWith;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.clearInvocations;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
+import io.github.vitalijr2.mock.jdk.platform.logging.CleanLoggersExtension;
 import java.lang.System.Logger;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class HelloServiceFullTest {
+@ExtendWith(CleanLoggersExtension.class)
+class HelloServiceExtensionTest {
 
   private static Logger logger;
 
   @BeforeAll
   static void setUpClass() {
     logger = System.getLogger("HelloService");
-  }
-
-  @BeforeEach
-  void setUp() throws Exception {
-    clearInvocations(logger);
   }
 
   @DisplayName("Names")
@@ -58,6 +54,5 @@ class HelloServiceFullTest {
 
     assertThat(exception.getMessage(), startsWith("Name is"));
   }
-
 
 }

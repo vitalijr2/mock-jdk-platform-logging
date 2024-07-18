@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *	   http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,19 +26,19 @@ import org.jetbrains.annotations.VisibleForTesting;
 /**
  * Uses {@link org.mockito.Mockito#mock(Class, String)} to get a logger that is adapted for {@link System.Logger}.
  */
-public class MockitoLoggerFinder extends LoggerFinder {
+public class MockLoggerFinder extends LoggerFinder {
 
   private final Map<String, Logger> loggers;
 
   /**
    * Create a map-based logger finder. The finder uses a concurrent map: a logger name is a key.
    */
-  public MockitoLoggerFinder() {
+  public MockLoggerFinder() {
     this(new ConcurrentHashMap<>());
   }
 
   @VisibleForTesting
-  MockitoLoggerFinder(Map<String, Logger> loggers) {
+  MockLoggerFinder(Map<String, Logger> loggers) {
     this.loggers = loggers;
   }
 
@@ -52,6 +52,10 @@ public class MockitoLoggerFinder extends LoggerFinder {
   @Override
   public Logger getLogger(String name, Module module) {
     return loggers.computeIfAbsent(name, key -> mock(Logger.class, "Mock for logger " + key));
+  }
+
+  Map<String, Logger> getLoggers() {
+    return loggers;
   }
 
 }
