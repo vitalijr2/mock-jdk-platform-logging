@@ -1,9 +1,12 @@
 package io.github.vitalijr2.mock.jdk.platform.logging;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.when;
 
 import java.lang.System.Logger.Level;
 import java.util.function.Supplier;
@@ -21,7 +24,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 @Tag("fast")
-class CleanLoggersExtensionFastTest {
+class MockLoggerExtensionFastTest {
 
   @Captor
   private ArgumentCaptor<Supplier<String>> messageCaptor;
@@ -30,14 +33,14 @@ class CleanLoggersExtensionFastTest {
   @Mock
   private Logger extensionLogger;
 
-  private CleanLoggersExtension extension;
+  private MockLoggerExtension extension;
   private System.Logger firstLogger;
   private System.Logger secondLogger;
 
   @BeforeEach
   void setUp() {
     var loggerFinder = new MockLoggerFinder();
-    extension = new CleanLoggersExtension(loggerFinder, extensionLogger);
+    extension = new MockLoggerExtension(loggerFinder, extensionLogger);
     firstLogger = loggerFinder.getLogger("first", getClass().getModule());
     secondLogger = loggerFinder.getLogger("second", getClass().getModule());
   }
@@ -45,6 +48,10 @@ class CleanLoggersExtensionFastTest {
   @DisplayName("Clean and reset loggers after each test")
   @Test
   void resetLoggersAfterEachTest() {
+    // given
+    when(firstLogger.isLoggable(Level.INFO)).thenReturn(true);
+    when(firstLogger.isLoggable(Level.INFO)).thenReturn(false);
+
     // when
     firstLogger.log(Level.INFO, "test message");
     secondLogger.log(Level.INFO, "another test message");
@@ -57,12 +64,20 @@ class CleanLoggersExtensionFastTest {
     verifyNoInteractions(secondLogger);
     verify(extensionLogger).debug(messageCaptor.capture());
 
-    assertEquals("Clean and reset the loggers: first, second", messageCaptor.getValue().get());
+    assertAll("All clean and reset",
+        () -> assertEquals("Clean and reset the loggers: first, second", messageCaptor.getValue().get(),
+            "logging message"), () -> assertFalse(firstLogger.isLoggable(Level.INFO)),
+        () -> assertFalse(secondLogger.isLoggable(Level.INFO)));
+    ;
   }
 
   @DisplayName("Clean and reset loggers before each test")
   @Test
   void resetLoggersBeforeEachTest() {
+    // given
+    when(firstLogger.isLoggable(Level.INFO)).thenReturn(true);
+    when(firstLogger.isLoggable(Level.INFO)).thenReturn(false);
+
     // when
     firstLogger.log(Level.INFO, "test message");
     secondLogger.log(Level.INFO, "another test message");
@@ -75,7 +90,10 @@ class CleanLoggersExtensionFastTest {
     verifyNoInteractions(secondLogger);
     verify(extensionLogger).debug(messageCaptor.capture());
 
-    assertEquals("Clean and reset the loggers: first, second", messageCaptor.getValue().get());
+    assertAll("All clean and reset",
+        () -> assertEquals("Clean and reset the loggers: first, second", messageCaptor.getValue().get(),
+            "logging message"), () -> assertFalse(firstLogger.isLoggable(Level.INFO)),
+        () -> assertFalse(secondLogger.isLoggable(Level.INFO)));
   }
 
 }

@@ -5,11 +5,14 @@ import static org.hamcrest.core.StringStartsWith.startsWith;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.clearInvocations;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
 import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -29,6 +32,7 @@ class HelloServiceFullTest {
   @BeforeEach
   void setUp() throws Exception {
     clearInvocations(logger);
+    reset(logger);
   }
 
   @DisplayName("Names")
@@ -37,10 +41,13 @@ class HelloServiceFullTest {
   void names(String name) {
     var helloService = new HelloService();
 
+    when(logger.isLoggable(Level.INFO)).thenReturn(true);
+
     assertDoesNotThrow(() -> helloService.sayHello(name));
 
     var logger = System.getLogger("HelloService");
 
+    verify(logger).isLoggable(Level.INFO);
     verify(logger).log(System.Logger.Level.INFO, "Hello " + name + "!");
     verifyNoMoreInteractions(logger);
   }

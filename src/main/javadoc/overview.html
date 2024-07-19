@@ -5,7 +5,6 @@
   <title>Mock of JDK Platform Logging</title>
 </head>
 <body>
-<h1>Mock of JDK Platform Logging</h1>
 <p>JDK Platform Logging Service with mocked loggers backed by <a href="https://site.mockito.org/">Mockito</a>.</p>
 <p id="badges">
   <a href="https://app.codacy.com/gh/vitalijr2/mock-jdk-platform-logging/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade"><img
@@ -71,7 +70,7 @@
   Since the version <strong>1.1.0</strong> you can use the jUnit extension for automation.
 </p>
 <pre><code class="language-java">
-    {@literal @}ExtendWith(CleanLoggersExtension.class)
+    {@literal @}ExtendWith(MockLoggerExtension.class)
     class HelloServiceExtensionTest {
 
         private static Logger logger;

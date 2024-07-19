@@ -24,7 +24,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.jetbrains.annotations.VisibleForTesting;
 
 /**
- * Uses {@link org.mockito.Mockito#mock(Class, String)} to get a logger that is adapted for {@link System.Logger}.
+ * Uses {@link org.mockito.Mockito#mock(Class, String)} to get a mock that is adapted for {@link System.Logger}.
+ *
+ * @since 1.0.0
  */
 public class MockLoggerFinder extends LoggerFinder {
 
@@ -54,6 +56,11 @@ public class MockLoggerFinder extends LoggerFinder {
     return loggers.computeIfAbsent(name, key -> mock(Logger.class, "Mock for logger " + key));
   }
 
+  /**
+   * Returns mock loggers for {@link MockLoggerExtension}.
+   *
+   * @return mock loggers
+   */
   Map<String, Logger> getLoggers() {
     return loggers;
   }

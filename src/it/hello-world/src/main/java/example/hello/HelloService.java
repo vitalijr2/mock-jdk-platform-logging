@@ -3,6 +3,7 @@ package example.hello;
 import static java.util.Objects.requireNonNull;
 
 import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 public class HelloService {
 
@@ -19,7 +20,9 @@ public class HelloService {
 
     var greeting = "Hello " + name + "!";
 
-    logger.log(System.Logger.Level.INFO, greeting);
+    if (logger.isLoggable(Level.INFO)) {
+      logger.log(System.Logger.Level.INFO, greeting);
+    }
 
     return greeting;
   }

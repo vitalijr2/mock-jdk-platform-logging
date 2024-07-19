@@ -1,23 +1,21 @@
 package example.hello;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.StringStartsWith.startsWith;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
-import io.github.vitalijr2.mock.jdk.platform.logging.CleanLoggersExtension;
+import io.github.vitalijr2.mock.jdk.platform.logging.MockLoggerExtension;
 import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-@ExtendWith(CleanLoggersExtension.class)
+@ExtendWith(MockLoggerExtension.class)
 class HelloServiceExtensionTest {
 
   private static Logger logger;
@@ -25,6 +23,11 @@ class HelloServiceExtensionTest {
   @BeforeAll
   static void setUpClass() {
     logger = System.getLogger("HelloService");
+  }
+
+  @BeforeEach
+  void setUp() {
+    when(logger.isLoggable(Level.INFO)).thenReturn(true);
   }
 
   @DisplayName("Names")
@@ -37,22 +40,9 @@ class HelloServiceExtensionTest {
 
     var logger = System.getLogger("HelloService");
 
+    verify(logger).isLoggable(Level.INFO);
     verify(logger).log(System.Logger.Level.INFO, "Hello " + name + "!");
     verifyNoMoreInteractions(logger);
-  }
-
-  @DisplayName("Null or empty name")
-  @ParameterizedTest(name = "<{0}>")
-  @NullAndEmptySource
-  @ValueSource(strings = "   ")
-  void nullOrEmptyName(String name) {
-    var helloService = new HelloService();
-
-    var exception = assertThrows(RuntimeException.class, () -> helloService.sayHello(name));
-
-    verifyNoInteractions(System.getLogger("HelloService"));
-
-    assertThat(exception.getMessage(), startsWith("Name is"));
   }
 
 }

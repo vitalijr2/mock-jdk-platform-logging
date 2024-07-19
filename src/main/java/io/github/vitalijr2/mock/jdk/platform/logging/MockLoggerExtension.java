@@ -29,21 +29,23 @@ import org.junit.platform.commons.logging.LoggerFactory;
 
 /**
  * jUnit extension to clean and reset mock loggers.
+ *
+ * @since 1.1.0
  */
-public class CleanLoggersExtension implements AfterEachCallback, BeforeEachCallback {
+public class MockLoggerExtension implements AfterEachCallback, BeforeEachCallback {
 
   private final MockLoggerFinder loggerFinder;
   private final Logger extensionLogger;
 
   /**
-   * Create an extension, initialize the MockLoggerFinder.
+   * Create an extension.
    */
-  public CleanLoggersExtension() {
-    this(getMockLoggerFinder(), LoggerFactory.getLogger(CleanLoggersExtension.class));
+  public MockLoggerExtension() {
+    this(getMockLoggerFinder(), LoggerFactory.getLogger(MockLoggerExtension.class));
   }
 
   @VisibleForTesting
-  CleanLoggersExtension(MockLoggerFinder loggerFinder, Logger extensionLogger) {
+  MockLoggerExtension(MockLoggerFinder loggerFinder, Logger extensionLogger) {
     this.loggerFinder = loggerFinder;
     this.extensionLogger = extensionLogger;
   }

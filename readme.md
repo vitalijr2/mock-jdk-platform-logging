@@ -71,7 +71,7 @@ See more details at [HelloServiceFullTest.java](src/it/hello-world/src/test/java
 
 Since the version **1.1.0** you can use the jUnit extension for automation.
 ```java
-@ExtendWith(CleanLoggersExtension.class)
+@ExtendWith(MockLoggerExtension.class)
 class HelloServiceExtensionTest {
 
     private static Logger logger;

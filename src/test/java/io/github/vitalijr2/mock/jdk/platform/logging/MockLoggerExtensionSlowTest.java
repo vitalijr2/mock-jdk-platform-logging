@@ -16,7 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 @Tag("slow")
-class CleanLoggersExtensionSlowTest {
+class MockLoggerExtensionSlowTest {
 
   @DisplayName("Unknown logger finder")
   @Test
@@ -27,7 +27,7 @@ class CleanLoggersExtensionSlowTest {
 
       // when
       var exception = assertThrows(ExtensionConfigurationException.class,
-          CleanLoggersExtension::getMockLoggerFinder);
+          MockLoggerExtension::getMockLoggerFinder);
 
       // then
       assertEquals("The logger finder is not a MockLoggerFinder", exception.getMessage());
@@ -38,7 +38,7 @@ class CleanLoggersExtensionSlowTest {
   @Test
   void initLoggerFinderOnBeforeAll() {
     // when and then
-    assertDoesNotThrow(() -> new CleanLoggersExtension());
+    assertDoesNotThrow(() -> new MockLoggerExtension());
   }
 
 }
