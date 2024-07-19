@@ -1,5 +1,5 @@
 /**
- * JDK Platform Logging Service with mocked loggers backed by <a href="https://site.mockito.org/">Mockito</a>.
+ * JDK Platform Logging Service with mock loggers backed by <a href="https://site.mockito.org/">Mockito</a>.
  *
  * @since 1.0.0
  */

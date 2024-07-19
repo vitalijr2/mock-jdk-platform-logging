@@ -1,6 +1,6 @@
 # Mock of JDK Platform Logging
 
-JDK Platform Logging Service with mocked loggers backed by [Mockito][].
+JDK Platform Logging Service with mock loggers backed by [Mockito][].
 
 [![Codacy Badge][codacy-badge]][codacy-badge-link]
 [![Codacy Coverage][codacy-coverage]][codacy-coverage-link]  

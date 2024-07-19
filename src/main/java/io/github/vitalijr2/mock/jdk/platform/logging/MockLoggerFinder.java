@@ -49,7 +49,7 @@ public class MockLoggerFinder extends LoggerFinder {
    *
    * @param name   logging name
    * @param module logging module
-   * @return mocked logger
+   * @return mock logger
    */
   @Override
   public Logger getLogger(String name, Module module) {
