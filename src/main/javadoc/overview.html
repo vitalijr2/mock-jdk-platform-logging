@@ -58,7 +58,7 @@
     void names(String name) {
         var helloService = new HelloService();
 
-        assertDoesNotThrow(() -> helloService.sayHello(name));
+        assertDoesNotThrow(() -&gt; helloService.sayHello(name));
 
         var logger = System.getLogger("HelloService");
 
@@ -86,7 +86,7 @@
         void names(String name) {
             var helloService = new HelloService();
 
-            assertDoesNotThrow(() -> helloService.sayHello(name));
+            assertDoesNotThrow(() -&gt; helloService.sayHello(name));
 
             var logger = System.getLogger("HelloService");
 
