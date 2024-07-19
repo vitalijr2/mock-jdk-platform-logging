@@ -16,7 +16,12 @@
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
-          <skip>true</skip>
+          <properties>
+            <groups>fast</groups>
+          </properties>
+          <systemPropertyVariables>
+            <java.util.logging.config.file>extension-logging.properties</java.util.logging.config.file>
+          </systemPropertyVariables>
         </configuration>
         <groupId>org.apache.maven.plugins</groupId>
         <version>3.3.1</version>
@@ -27,6 +32,9 @@
           <includes>
             <include>**/*Test.java</include>
           </includes>
+          <properties>
+            <groups>slow</groups>
+          </properties>
         </configuration>
         <executions>
           <execution>

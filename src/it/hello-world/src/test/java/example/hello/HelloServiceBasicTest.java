@@ -6,8 +6,10 @@ import static org.mockito.Mockito.verify;
 
 import java.lang.System.Logger.Level;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+@Tag("fast")
 class HelloServiceBasicTest {
 
   @DisplayName("Hello world")
