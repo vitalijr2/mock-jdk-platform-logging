@@ -28,7 +28,8 @@ import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 
 /**
- * jUnit extension to clean and reset mock loggers.
+ * jUnit extension to clean and reset mock loggers. Clean and reset mock loggers before and after tests. You are still
+ * able to run tasks in {@link org.junit.jupiter.api.BeforeEach} and {@link org.junit.jupiter.api.AfterEach}.
  *
  * @since 1.1.0
  */
@@ -61,7 +62,8 @@ public class MockLoggerExtension implements AfterEachCallback, BeforeEachCallbac
   }
 
   /**
-   * Clean and reset mock loggers after tests.
+   * Clean and reset mock loggers after tests. You are still able to run tasks in
+   * {@link org.junit.jupiter.api.AfterEach}.
    *
    * @param context the current extension context; never {@code null}
    */
@@ -71,7 +73,8 @@ public class MockLoggerExtension implements AfterEachCallback, BeforeEachCallbac
   }
 
   /**
-   * Clean and reset mock loggers before tests.
+   * Clean and reset mock loggers before tests. You are still able to run tasks in
+   * {@link org.junit.jupiter.api.BeforeEach}.
    *
    * @param context the current extension context; never {@code null}
    */
