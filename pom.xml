@@ -329,7 +329,7 @@
       <version>2.2</version>
     </dependency>
   </dependencies>
-  <description>JDK Platform Logging Service with mock Loggers backed by Mockito.</description>
+  <description>JDK Platform Logging Service with mock loggers backed by Mockito.</description>
   <developers>
     <developer>
       <email>vitalij_r2@outlook.com</email>

@@ -19,6 +19,8 @@ import static org.mockito.Mockito.clearInvocations;
 import static org.mockito.Mockito.reset;
 
 import java.lang.System.LoggerFinder;
+import java.util.ArrayList;
+import java.util.List;
 import org.jetbrains.annotations.VisibleForTesting;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
@@ -69,7 +71,8 @@ public class MockLoggerExtension implements AfterEachCallback, BeforeEachCallbac
    */
   @Override
   public void afterEach(ExtensionContext context) {
-    cleanAndResetLoggers();
+    var processedLoggers = cleanAndResetLoggers();
+    extensionLogger.debug(() -> "Clean and reset the loggers: " + String.join(", ", processedLoggers));
   }
 
   /**
@@ -80,16 +83,18 @@ public class MockLoggerExtension implements AfterEachCallback, BeforeEachCallbac
    */
   @Override
   public void beforeEach(ExtensionContext context) {
-    cleanAndResetLoggers();
+    var processedLoggers = cleanAndResetLoggers();
+    extensionLogger.debug(() -> "Clean and reset the loggers: " + String.join(", ", processedLoggers));
   }
 
-  private void cleanAndResetLoggers() {
+  private List<String> cleanAndResetLoggers() {
+    var processedLoggers = new ArrayList<String>();
     loggerFinder.getLoggers().forEach((loggerName, logger) -> {
       clearInvocations(logger);
       reset(logger);
+      processedLoggers.add(loggerName);
     });
-    extensionLogger.debug(
-        () -> "Clean and reset the loggers: " + String.join(", ", loggerFinder.getLoggers().keySet()));
+    return processedLoggers;
   }
 
 }
