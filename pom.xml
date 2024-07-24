@@ -15,7 +15,6 @@
               <goal>clean</goal>
               <goal>verify</goal>
             </goals>
-            <invokerPropertiesFile>invoker.properties</invokerPropertiesFile>
             <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
             <pomIncludes>
               <pomInclude>*/pom.xml</pomInclude>
@@ -330,7 +329,7 @@
       <version>2.2</version>
     </dependency>
   </dependencies>
-  <description>JDK Platform Logging Service with mock Loggers backed by Mockito.</description>
+  <description>JDK Platform Logging Service with mock loggers backed by Mockito.</description>
   <developers>
     <developer>
       <email>vitalij_r2@outlook.com</email>
@@ -419,7 +418,7 @@
   </profiles>
   <properties>
     <java.version>11</java.version>
-    <javadoc-plugin.version>3.7.0</javadoc-plugin.version>
+    <javadoc-plugin.version>3.8.0</javadoc-plugin.version>
     <junit-platform.version>1.10.3</junit-platform.version>
     <junit-jupiter.version>5.10.3</junit-jupiter.version>
     <mockito.version>5.12.0</mockito.version>
@@ -431,5 +430,5 @@
     <url>https://github.com/vitalijr2/mock-jdk-platform-logging</url>
   </scm>
   <url>https://github.com/vitalijr2/mock-jdk-platform-logging</url>
-  <version>1.1.0</version>
+  <version>1.1.1-SNAPSHOT</version>
 </project>
