@@ -28,7 +28,7 @@
 
         assertDoesNotThrow(helloService::sayHelloWorld);
 
-        verify(System.getLogger("HelloService")).log(System.Logger.Level.INFO, "Hello World!");
+        verify(System.getLogger("HelloService")).log(Level.INFO, "Hello World!");
     }
 </code></pre>
 <p>
@@ -62,7 +62,7 @@
 
         var logger = System.getLogger("HelloService");
 
-        verify(logger).log(System.Logger.Level.INFO, "Hello " + name + "!");
+        verify(logger).log(Level.INFO, "Hello " + name + "!");
         verifyNoMoreInteractions(logger);
     }
 </code></pre>
@@ -90,7 +90,7 @@
 
             var logger = System.getLogger("HelloService");
 
-            verify(logger).log(System.Logger.Level.INFO, "Hello " + name + "!");
+            verify(logger).log(Level.INFO, "Hello " + name + "!");
             verifyNoMoreInteractions(logger);
         }
 

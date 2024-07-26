@@ -41,7 +41,7 @@ class HelloServiceExtensionTest {
     var logger = System.getLogger("HelloService");
 
     verify(logger).isLoggable(Level.INFO);
-    verify(logger).log(System.Logger.Level.INFO, "Hello " + name + "!");
+    verify(logger).log(Level.INFO, "Hello " + name + "!");
     verifyNoMoreInteractions(logger);
   }
 

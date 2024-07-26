@@ -29,7 +29,7 @@ void helloWorld() {
 
     assertDoesNotThrow(helloService::sayHelloWorld);
 
-    verify(System.getLogger("HelloService")).log(System.Logger.Level.INFO, "Hello World!");
+    verify(System.getLogger("HelloService")).log(Level.INFO, "Hello World!");
 }
 ```
 See more details at [HelloServiceBasicTest.java](src/it/hello-world/src/test/java/example/hello/HelloServiceBasicTest.java)
@@ -63,7 +63,7 @@ void names(String name) {
 
     var logger = System.getLogger("HelloService");
 
-    verify(logger).log(System.Logger.Level.INFO, "Hello " + name + "!");
+    verify(logger).log(Level.INFO, "Hello " + name + "!");
     verifyNoMoreInteractions(logger);
 }
 ```
@@ -91,7 +91,7 @@ class HelloServiceExtensionTest {
 
         var logger = System.getLogger("HelloService");
 
-        verify(logger).log(System.Logger.Level.INFO, "Hello " + name + "!");
+        verify(logger).log(Level.INFO, "Hello " + name + "!");
         verifyNoMoreInteractions(logger);
     }
 

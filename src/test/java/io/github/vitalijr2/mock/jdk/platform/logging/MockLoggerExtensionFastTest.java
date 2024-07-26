@@ -8,6 +8,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
+import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.util.function.Supplier;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +17,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.platform.commons.logging.Logger;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
@@ -31,11 +31,11 @@ class MockLoggerExtensionFastTest {
   @Mock
   private ExtensionContext extensionContext;
   @Mock
-  private Logger extensionLogger;
+  private org.junit.platform.commons.logging.Logger extensionLogger;
 
   private MockLoggerExtension extension;
-  private System.Logger firstLogger;
-  private System.Logger secondLogger;
+  private Logger firstLogger;
+  private Logger secondLogger;
 
   @BeforeEach
   void setUp() {

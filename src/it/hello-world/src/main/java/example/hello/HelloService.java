@@ -21,7 +21,7 @@ public class HelloService {
     var greeting = "Hello " + name + "!";
 
     if (logger.isLoggable(Level.INFO)) {
-      logger.log(System.Logger.Level.INFO, greeting);
+      logger.log(Level.INFO, greeting);
     }
 
     return greeting;
