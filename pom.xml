@@ -326,7 +326,7 @@
       <artifactId>hamcrest</artifactId>
       <groupId>org.hamcrest</groupId>
       <scope>test</scope>
-      <version>2.2</version>
+      <version>3.0</version>
     </dependency>
   </dependencies>
   <description>JDK Platform Logging Service with mock loggers backed by Mockito.</description>
@@ -395,7 +395,6 @@
             <artifactId>central-publishing-maven-plugin</artifactId>
             <configuration>
               <publishingServerId>central</publishingServerId>
-              <tokenAuth>true</tokenAuth>
             </configuration>
             <extensions>true</extensions>
             <groupId>org.sonatype.central</groupId>
@@ -407,6 +406,20 @@
     <profile>
       <build>
         <plugins>
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
+            <groupId>org.apache.maven.plugins</groupId>
+          </plugin>
+          <plugin>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
+            <groupId>org.apache.maven.plugins</groupId>
+          </plugin>
           <plugin>
             <artifactId>maven-invoker-plugin</artifactId>
             <groupId>org.apache.maven.plugins</groupId>
