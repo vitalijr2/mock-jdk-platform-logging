@@ -19,7 +19,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'java' ]
+        include:
+          - language: java-kotlin
+            build-mode: none # This mode only analyzes Java. Set this to 'autobuild' or 'manual' to analyze Kotlin too.
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -32,8 +34,7 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v3
+        build-mode: ${{ matrix.build-mode }}
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       with:
