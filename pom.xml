@@ -165,7 +165,7 @@
           </properties>
         </configuration>
         <groupId>org.apache.maven.plugins</groupId>
-        <version>3.4.0</version>
+        <version>3.5.0</version>
       </plugin>
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
