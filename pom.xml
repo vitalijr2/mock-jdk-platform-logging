@@ -434,7 +434,7 @@
     <javadoc-plugin.version>3.10.0</javadoc-plugin.version>
     <junit-platform.version>1.11.0</junit-platform.version>
     <junit-jupiter.version>5.11.0</junit-jupiter.version>
-    <mockito.version>5.13.0</mockito.version>
+    <mockito.version>5.14.0</mockito.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <scm>
