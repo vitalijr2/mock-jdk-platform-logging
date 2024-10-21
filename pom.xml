@@ -32,7 +32,7 @@
             </execution>
           </executions>
           <groupId>org.apache.maven.plugins</groupId>
-          <version>3.7.0</version>
+          <version>3.8.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-javadoc-plugin</artifactId>
@@ -77,7 +77,7 @@
         <plugin>
           <artifactId>central-publishing-maven-plugin</artifactId>
           <groupId>org.sonatype.central</groupId>
-          <version>0.5.0</version>
+          <version>0.6.0</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -165,7 +165,7 @@
           </properties>
         </configuration>
         <groupId>org.apache.maven.plugins</groupId>
-        <version>3.4.0</version>
+        <version>3.5.1</version>
       </plugin>
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
@@ -201,7 +201,7 @@
           </execution>
         </executions>
         <groupId>org.apache.maven.plugins</groupId>
-        <version>3.4.0</version>
+        <version>3.5.1</version>
       </plugin>
       <plugin>
         <artifactId>jacoco-maven-plugin</artifactId>
@@ -301,7 +301,7 @@
       <artifactId>annotations</artifactId>
       <groupId>org.jetbrains</groupId>
       <scope>provided</scope>
-      <version>24.1.0</version>
+      <version>26.0.1</version>
     </dependency>
     <!-- test -->
     <dependency>
@@ -431,10 +431,10 @@
   </profiles>
   <properties>
     <java.version>11</java.version>
-    <javadoc-plugin.version>3.8.0</javadoc-plugin.version>
-    <junit-platform.version>1.11.0</junit-platform.version>
-    <junit-jupiter.version>5.11.0</junit-jupiter.version>
-    <mockito.version>5.12.0</mockito.version>
+    <javadoc-plugin.version>3.10.1</javadoc-plugin.version>
+    <junit-platform.version>1.11.3</junit-platform.version>
+    <junit-jupiter.version>5.11.3</junit-jupiter.version>
+    <mockito.version>5.14.2</mockito.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <scm>
@@ -443,5 +443,5 @@
     <url>https://github.com/vitalijr2/mock-jdk-platform-logging</url>
   </scm>
   <url>https://github.com/vitalijr2/mock-jdk-platform-logging</url>
-  <version>1.1.1</version>
+  <version>1.1.2-SNAPSHOT</version>
 </project>
