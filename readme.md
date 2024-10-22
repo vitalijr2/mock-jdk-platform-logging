@@ -146,7 +146,7 @@ limitations under the License.
 
 [codacy-coverage-link]: https://app.codacy.com/gh/vitalijr2/mock-jdk-platform-logging/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage
 
-[java-version]: https://img.shields.io/static/v1?label=java&message=11&color=blue&logoColor=E23D28
+[java-version]: https://img.shields.io/static/v1?label=Java&message=11&color=blue&logoColor=E23D28
 
 [jdk-download]: https://www.oracle.com/java/technologies/downloads/#java11
 
