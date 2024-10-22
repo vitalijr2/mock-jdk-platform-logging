@@ -4,10 +4,13 @@ JDK Platform Logging Service with mock loggers backed by [Mockito][].
 
 [![Codacy Badge][codacy-badge]][codacy-badge-link]
 [![Codacy Coverage][codacy-coverage]][codacy-coverage-link]  
-[![Libraries.io dependency status for GitHub repo][dependency-status]][dependencies]
-[![Java Version][java-version]][jdk-download]  
+![Maven Central Last Update](https://img.shields.io/maven-central/last-update/io.github.vitalijr2.logging/mock-jdk-platform-logging)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.vitalijr2.logging/mock-jdk-platform-logging)](https://search.maven.org/artifact/io.github.vitalijr2.logging/mock-jdk-platform-logging)
-[![Javadoc](https://javadoc.io/badge2/io.github.vitalijr2.logging/mock-jdk-platform-logging/javadoc.svg)](https://javadoc.io/doc/io.github.vitalijr2.logging/mock-jdk-platform-logging)
+[![Javadoc](https://javadoc.io/badge2/io.github.vitalijr2.logging/mock-jdk-platform-logging/javadoc.svg)](https://javadoc.io/doc/io.github.vitalijr2.logging/mock-jdk-platform-logging)  
+[![Java Version][java-version]][jdk-download]
+![jUnit Jupiter Version][junit-jupiter-version]
+![jUnit Platform Version][junit-platform-version]
+![Mockito Version][mockito-version]
 
 ## How to use
 
@@ -143,13 +146,15 @@ limitations under the License.
 
 [codacy-coverage-link]: https://app.codacy.com/gh/vitalijr2/mock-jdk-platform-logging/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage
 
-[dependency-status]: https://img.shields.io/librariesio/github/vitalijr2/mock-jdk-platform-logging
-
-[dependencies]: https://libraries.io/github/vitalijr2/mock-jdk-platform-logging
-
-[java-version]: https://img.shields.io/static/v1?label=java&message=11&color=blue&logo=java&logoColor=E23D28
+[java-version]: https://img.shields.io/static/v1?label=Java&message=11&color=blue&logoColor=E23D28
 
 [jdk-download]: https://www.oracle.com/java/technologies/downloads/#java11
+
+[junit-jupiter-version]: https://img.shields.io/static/v1?label=jUnit+Jupiter&message=5.11.3&color=blue&logo=junit5&logoColor=E23D28
+
+[junit-platform-version]: https://img.shields.io/static/v1?label=jUnit+Platform&message=1.11.3&color=blue&logo=junit5&logoColor=E23D28
+
+[mockito-version]: https://img.shields.io/static/v1?label=Mockito&message=5.14.2&color=blue&logoColor=E23D28
 
 [slf4j-mock]: https://github.com/s4u/slf4j-mock
 
