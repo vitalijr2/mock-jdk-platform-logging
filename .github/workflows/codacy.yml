@@ -26,9 +26,8 @@ jobs:
       - name: Temporarily save target and test requests
         uses: actions/upload-artifact@master
         with:
-          name: tests-and-target
-          path: |
-            target
+          name: target
+          path: target/
           retention-days: 1
   codacy-security-scan:
     name: Codacy Security Scan
@@ -61,7 +60,7 @@ jobs:
       - name: Retrieve saved test requests and target
         uses: actions/download-artifact@master
         with:
-          name: tests-and-target
+          name: target
           path: target
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@a38818475bb21847788496e9f0fddaa4e84955ba
