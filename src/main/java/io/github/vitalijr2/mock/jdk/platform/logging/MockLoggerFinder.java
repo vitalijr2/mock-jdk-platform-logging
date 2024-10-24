@@ -25,6 +25,18 @@ import org.jetbrains.annotations.VisibleForTesting;
 
 /**
  * Uses {@link org.mockito.Mockito#mock(Class, String)} to get a mock that is adapted for {@link Logger}.
+ * <p>
+ * Example:
+ * <pre><code class="language-java">
+ *   {@literal @}Test
+ *   void helloWorld() {
+ *     var helloService = new HelloService();
+ *
+ *     assertDoesNotThrow(helloService::sayHelloWorld);
+ *
+ *     verify(System.getLogger("HelloService")).log(Level.INFO, "Hello World!");
+ *   }
+ * </code></pre>
  *
  * @since 1.0.0
  */
