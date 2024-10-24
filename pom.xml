@@ -278,6 +278,10 @@
       </plugin>
     </plugins>
   </build>
+  <ciManagement>
+    <system>GitHub Actions</system>
+    <url>https://github.com/vitalijr2/mock-jdk-platform-logging/actions</url>
+  </ciManagement>
   <dependencies>
     <dependency>
       <artifactId>mockito-core</artifactId>
@@ -341,6 +345,10 @@
   </developers>
   <groupId>io.github.vitalijr2.logging</groupId>
   <inceptionYear>2024</inceptionYear>
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://github.com/vitalijr2/mock-jdk-platform-logging/issues</url>
+  </issueManagement>
   <licenses>
     <license>
       <comments>See NOTICE for third-party licenses.</comments>
@@ -432,8 +440,8 @@
   <properties>
     <java.version>11</java.version>
     <javadoc-plugin.version>3.10.1</javadoc-plugin.version>
-    <junit-platform.version>1.11.3</junit-platform.version>
     <junit-jupiter.version>5.11.3</junit-jupiter.version>
+    <junit-platform.version>1.11.3</junit-platform.version>
     <mockito.version>5.14.2</mockito.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
