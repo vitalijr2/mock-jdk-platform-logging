@@ -32,6 +32,35 @@ import org.junit.platform.commons.logging.LoggerFactory;
 /**
  * jUnit extension to clean and reset mock loggers. Clean and reset mock loggers before and after tests. You are still
  * able to run tasks in {@link org.junit.jupiter.api.BeforeEach} and {@link org.junit.jupiter.api.AfterEach}.
+ * <p>
+ * Example:
+ * <pre><code class="language-java">
+ *   {@literal @}ExtendWith(MockLoggerExtension.class)
+ *   class HelloServiceExtensionTest {
+ *
+ *     private static Logger logger;
+ *
+ *     {@literal @}BeforeAll
+ *     static void setUpClass() {
+ *         logger = System.getLogger("HelloService");
+ *     }
+ *
+ *     {@literal @}DisplayName("Names")
+ *     {@literal @}ParameterizedTest(name = "&lt;{0}&gt;")
+ *     {@literal @}ValueSource(strings = {"John", "Jane"})
+ *     void names(String name) {
+ *         var helloService = new HelloService();
+ *
+ *         assertDoesNotThrow(() -> helloService.sayHello(name));
+ *
+ *         var logger = System.getLogger("HelloService");
+ *
+ *         verify(logger).log(Level.INFO, "Hello " + name + "!");
+ *         verifyNoMoreInteractions(logger);
+ *     }
+ *
+ *   }
+ * </code></pre>
  *
  * @since 1.1.0
  */
