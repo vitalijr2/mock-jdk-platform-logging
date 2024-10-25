@@ -149,7 +149,7 @@ limitations under the License.
 
 [maven-central]: https://img.shields.io/maven-central/v/io.github.vitalijr2.logging/mock-jdk-platform-logging
 
-[maven-central-link]: https://search.maven.org/artifact/io.github.vitalijr2.logging/mock-jdk-platform-logging
+[maven-central-link]: https://central.sonatype.com/artifact/io.github.vitalijr2.logging/mock-jdk-platform-logging?smo=true
 
 [javadoc]: https://javadoc.io/badge2/io.github.vitalijr2.logging/mock-jdk-platform-logging/javadoc.svg
 
