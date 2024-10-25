@@ -52,7 +52,7 @@
             <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
             <links>
               <link>https://javadoc.io/doc/org.mockito/mockito-core/${mockito.version}/</link>
-              <link>https://javadoc.io/doc/org.junit.jupiter/junit-jupiter-api/${junit-jupiter.version}/</link>
+              <link>https://javadoc.io/doc/org.junit.jupiter/junit-jupiter-api/${junit.version}/</link>
             </links>
             <offline>false</offline>
             <show>public</show>
@@ -341,7 +341,7 @@
         <groupId>org.junit</groupId>
         <scope>import</scope>
         <type>pom</type>
-        <version>${junit-jupiter.version}</version>
+        <version>${junit.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -452,7 +452,7 @@
   <properties>
     <java.version>11</java.version>
     <javadoc-plugin.version>3.10.1</javadoc-plugin.version>
-    <junit-jupiter.version>5.11.3</junit-jupiter.version>
+    <junit.version>5.11.3</junit.version>
     <mockito.version>5.14.2</mockito.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>

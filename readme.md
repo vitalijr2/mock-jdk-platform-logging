@@ -3,7 +3,7 @@
 JDK Platform Logging Service with mock loggers backed by [Mockito][].
 
 [![Java Version][java-version]][jdk-download]
-![jUnit Jupiter Version][junit-jupiter-version]
+![jUnit Version][junit-version]
 ![Mockito Version][mockito-version]
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)  
 ![Maven Central Last Update](https://img.shields.io/maven-central/last-update/io.github.vitalijr2.logging/mock-jdk-platform-logging)
@@ -149,7 +149,7 @@ limitations under the License.
 
 [jdk-download]: https://www.oracle.com/java/technologies/downloads/#java11
 
-[junit-jupiter-version]: https://img.shields.io/static/v1?label=jUnit+Jupiter&message=5.11.3&color=blue&logo=junit5&logoColor=E23D28
+[junit-version]: https://img.shields.io/static/v1?label=jUnit&message=5.11.3&color=blue&logo=junit5&logoColor=E23D28
 
 [mockito-version]: https://img.shields.io/static/v1?label=Mockito&message=5.14.2&color=blue&logoColor=E23D28
 
