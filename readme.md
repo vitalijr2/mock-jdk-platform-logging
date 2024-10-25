@@ -6,12 +6,15 @@ JDK Platform Logging Service with mock loggers backed by [Mockito][].
 ![jUnit Version][junit-version]
 ![Mockito Version][mockito-version]
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)  
-![Maven Central Last Update](https://img.shields.io/maven-central/last-update/io.github.vitalijr2.logging/mock-jdk-platform-logging)
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.vitalijr2.logging/mock-jdk-platform-logging)](https://search.maven.org/artifact/io.github.vitalijr2.logging/mock-jdk-platform-logging)
-[![Javadoc](https://javadoc.io/badge2/io.github.vitalijr2.logging/mock-jdk-platform-logging/javadoc.svg)](https://javadoc.io/doc/io.github.vitalijr2.logging/mock-jdk-platform-logging)  
+![Maven Central Last Update][maven-central-last-update]
+[![Maven Central][maven-central]][maven-central-link]
+[![Javadoc][javadoc]][javadoc-link]  
 [![GitHub master check runs][github-master-check-runs]][github-master-check-runs-link]
 [![Codacy Badge][codacy-badge]][codacy-badge-link]
-[![Codacy Coverage][codacy-coverage]][codacy-coverage-link]
+[![Codacy Coverage][codacy-coverage]][codacy-coverage-link]  
+[![Today's hits][today-hits]][today-hits-link]
+![GitHub commit activity][github-commit-activity]
+
 
 ## How to use
 
@@ -142,6 +145,16 @@ limitations under the License.
 
 [github-master-check-runs-link]: https://github.com/vitalijr2/mock-jdk-platform-logging/actions?query=branch%3Amaster
 
+[maven-central-last-update]: https://img.shields.io/maven-central/last-update/io.github.vitalijr2.logging/mock-jdk-platform-loggin
+
+[maven-central]: https://img.shields.io/maven-central/v/io.github.vitalijr2.logging/mock-jdk-platform-logging
+
+[maven-central-link]: https://search.maven.org/artifact/io.github.vitalijr2.logging/mock-jdk-platform-logging
+
+[javadoc]: https://javadoc.io/badge2/io.github.vitalijr2.logging/mock-jdk-platform-logging/javadoc.svg
+
+[javadoc-link]: https://javadoc.io/doc/io.github.vitalijr2.logging/mock-jdk-platform-logging
+
 [codacy-badge]: https://app.codacy.com/project/badge/Grade/9be380deaf3e40138ad306a40532289c
 
 [codacy-badge-link]: https://app.codacy.com/gh/vitalijr2/mock-jdk-platform-logging/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
@@ -149,6 +162,12 @@ limitations under the License.
 [codacy-coverage]: https://app.codacy.com/project/badge/Coverage/9be380deaf3e40138ad306a40532289c
 
 [codacy-coverage-link]: https://app.codacy.com/gh/vitalijr2/mock-jdk-platform-logging/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage
+
+[today-hits]: https://hits.sh/github.com/vitalijr2/mock-jdk-platform-logging.svg?view=today-total&label=today's%20hits
+
+[today-hits-link]: https://hits.sh/github.com/vitalijr2/mock-jdk-platform-logging/
+
+[github-commit-activity]: https://img.shields.io/github/commit-activity/y/vitalijr2/mock-jdk-platform-logging
 
 [java-version]: https://img.shields.io/static/v1?label=Java&message=11&color=blue&logoColor=E23D28
 
