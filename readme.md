@@ -9,7 +9,7 @@ JDK Platform Logging Service with mock loggers backed by [Mockito][].
 ![Maven Central Last Update](https://img.shields.io/maven-central/last-update/io.github.vitalijr2.logging/mock-jdk-platform-logging)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.vitalijr2.logging/mock-jdk-platform-logging)](https://search.maven.org/artifact/io.github.vitalijr2.logging/mock-jdk-platform-logging)
 [![Javadoc](https://javadoc.io/badge2/io.github.vitalijr2.logging/mock-jdk-platform-logging/javadoc.svg)](https://javadoc.io/doc/io.github.vitalijr2.logging/mock-jdk-platform-logging)  
-![GitHub branch check runs](https://img.shields.io/github/check-runs/vitalijr2/mock-jdk-platform-logging/master)
+[![GitHub branch check runs][github-master-check-runs-link]](https://img.shields.io/github/check-runs/vitalijr2/mock-jdk-platform-logging/master)
 [![Codacy Badge][codacy-badge]][codacy-badge-link]
 [![Codacy Coverage][codacy-coverage]][codacy-coverage-link]
 
@@ -138,7 +138,9 @@ limitations under the License.
 
 [Mockito]: https://site.mockito.org
 
-[github-check-runs]: https://img.shields.io/github/check-runs/vitalijr2/mock-jdk-platform-logging/master
+[github-master-check-runs]: https://img.shields.io/github/check-runs/vitalijr2/mock-jdk-platform-logging/master
+
+[github-master-check-runs-link]: https://github.com/vitalijr2/mock-jdk-platform-logging/actions?query=branch%3Amaster
 
 [codacy-badge]: https://app.codacy.com/project/badge/Grade/9be380deaf3e40138ad306a40532289c
 
