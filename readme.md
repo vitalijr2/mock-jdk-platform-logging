@@ -9,7 +9,7 @@ JDK Platform Logging Service with mock loggers backed by [Mockito][].
 ![Maven Central Last Update](https://img.shields.io/maven-central/last-update/io.github.vitalijr2.logging/mock-jdk-platform-logging)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.vitalijr2.logging/mock-jdk-platform-logging)](https://search.maven.org/artifact/io.github.vitalijr2.logging/mock-jdk-platform-logging)
 [![Javadoc](https://javadoc.io/badge2/io.github.vitalijr2.logging/mock-jdk-platform-logging/javadoc.svg)](https://javadoc.io/doc/io.github.vitalijr2.logging/mock-jdk-platform-logging)  
-[![GitHub branch check runs][github-master-check-runs-link]](https://img.shields.io/github/check-runs/vitalijr2/mock-jdk-platform-logging/master)
+[![GitHub master check runs][github-master-check-runs]][github-master-check-runs-link]
 [![Codacy Badge][codacy-badge]][codacy-badge-link]
 [![Codacy Coverage][codacy-coverage]][codacy-coverage-link]
 
