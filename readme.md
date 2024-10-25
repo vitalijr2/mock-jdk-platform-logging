@@ -11,10 +11,9 @@ JDK Platform Logging Service with mock loggers backed by [Mockito][].
 [![Javadoc][javadoc]][javadoc-link]  
 [![GitHub master check runs][github-master-check-runs]][github-master-check-runs-link]
 [![Codacy Badge][codacy-badge]][codacy-badge-link]
-[![Codacy Coverage][codacy-coverage]][codacy-coverage-link]  
-[![Today's hits][today-hits]][today-hits-link]
+[![Codacy Coverage][codacy-coverage]][codacy-coverage-link]
 ![GitHub commit activity][github-commit-activity]
-
+[![Today's hits][today-hits]][today-hits-link]
 
 ## How to use
 
