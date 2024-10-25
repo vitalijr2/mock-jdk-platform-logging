@@ -2,15 +2,18 @@
 
 JDK Platform Logging Service with mock loggers backed by [Mockito][].
 
-[![Codacy Badge][codacy-badge]][codacy-badge-link]
-[![Codacy Coverage][codacy-coverage]][codacy-coverage-link]  
-![Maven Central Last Update](https://img.shields.io/maven-central/last-update/io.github.vitalijr2.logging/mock-jdk-platform-logging)
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.vitalijr2.logging/mock-jdk-platform-logging)](https://search.maven.org/artifact/io.github.vitalijr2.logging/mock-jdk-platform-logging)
-[![Javadoc](https://javadoc.io/badge2/io.github.vitalijr2.logging/mock-jdk-platform-logging/javadoc.svg)](https://javadoc.io/doc/io.github.vitalijr2.logging/mock-jdk-platform-logging)  
 [![Java Version][java-version]][jdk-download]
-![jUnit Jupiter Version][junit-jupiter-version]
-![jUnit Platform Version][junit-platform-version]
+![jUnit Version][junit-version]
 ![Mockito Version][mockito-version]
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)  
+![Maven Central Last Update][maven-central-last-update]
+[![Maven Central][maven-central]][maven-central-link]
+[![Javadoc][javadoc]][javadoc-link]  
+[![GitHub master check runs][github-master-check-runs]][github-master-check-runs-link]
+[![Codacy Badge][codacy-badge]][codacy-badge-link]
+[![Codacy Coverage][codacy-coverage]][codacy-coverage-link]
+![GitHub commit activity][github-commit-activity]
+[![Today's hits][today-hits]][today-hits-link]
 
 ## How to use
 
@@ -134,9 +137,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 [Apache License v2.0](LICENSE)  
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 [Mockito]: https://site.mockito.org
+
+[github-master-check-runs]: https://img.shields.io/github/check-runs/vitalijr2/mock-jdk-platform-logging/master
+
+[github-master-check-runs-link]: https://github.com/vitalijr2/mock-jdk-platform-logging/actions?query=branch%3Amaster
+
+[maven-central-last-update]: https://img.shields.io/maven-central/last-update/io.github.vitalijr2.logging/mock-jdk-platform-logging
+
+[maven-central]: https://img.shields.io/maven-central/v/io.github.vitalijr2.logging/mock-jdk-platform-logging
+
+[maven-central-link]: https://central.sonatype.com/artifact/io.github.vitalijr2.logging/mock-jdk-platform-logging?smo=true
+
+[javadoc]: https://javadoc.io/badge2/io.github.vitalijr2.logging/mock-jdk-platform-logging/javadoc.svg
+
+[javadoc-link]: https://javadoc.io/doc/io.github.vitalijr2.logging/mock-jdk-platform-logging
 
 [codacy-badge]: https://app.codacy.com/project/badge/Grade/9be380deaf3e40138ad306a40532289c
 
@@ -146,13 +162,17 @@ limitations under the License.
 
 [codacy-coverage-link]: https://app.codacy.com/gh/vitalijr2/mock-jdk-platform-logging/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage
 
+[today-hits]: https://hits.sh/github.com/vitalijr2/mock-jdk-platform-logging.svg?view=today-total&label=today's%20hits
+
+[today-hits-link]: https://hits.sh/github.com/vitalijr2/mock-jdk-platform-logging/
+
+[github-commit-activity]: https://img.shields.io/github/commit-activity/y/vitalijr2/mock-jdk-platform-logging
+
 [java-version]: https://img.shields.io/static/v1?label=Java&message=11&color=blue&logoColor=E23D28
 
 [jdk-download]: https://www.oracle.com/java/technologies/downloads/#java11
 
-[junit-jupiter-version]: https://img.shields.io/static/v1?label=jUnit+Jupiter&message=5.11.3&color=blue&logo=junit5&logoColor=E23D28
-
-[junit-platform-version]: https://img.shields.io/static/v1?label=jUnit+Platform&message=1.11.3&color=blue&logo=junit5&logoColor=E23D28
+[junit-version]: https://img.shields.io/static/v1?label=jUnit&message=5.11.3&color=blue&logo=junit5&logoColor=E23D28
 
 [mockito-version]: https://img.shields.io/static/v1?label=Mockito&message=5.14.2&color=blue&logoColor=E23D28
 
