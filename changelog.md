@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved Javadoc
 - Use BOM for jUnit and Mockito
 - Add activity badges, update other
-- Update some Maven plugins: invoker
+- Update Maven plugins: invoker, javadoc, surefire and failsafe
 
 ## 1.1.2 - 2024-10-21
 
