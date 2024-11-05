@@ -105,6 +105,36 @@ class HelloServiceExtensionTest {
 ```
 See more details at [HelloServiceExtensionTest.java](src/it/hello-world/src/test/java/example/hello/HelloServiceExtensionTest.java)
 
+Since the version **1.2.0** you can use the annotation for automation.
+```java
+@MockLoggers
+class HelloServiceAnnotationTest {
+
+    private static Logger logger;
+
+    @BeforeAll
+    static void setUpClass() {
+        logger = System.getLogger("HelloService");
+    }
+
+    @DisplayName("Names")
+    @ParameterizedTest(name = "<{0}>")
+    @ValueSource(strings = {"John", "Jane"})
+    void names(String name) {
+        var helloService = new HelloService();
+
+        assertDoesNotThrow(() -> helloService.sayHello(name));
+
+        var logger = System.getLogger("HelloService");
+
+        verify(logger).log(Level.INFO, "Hello " + name + "!");
+        verifyNoMoreInteractions(logger);
+    }
+
+}
+```
+See more details at [HelloServiceAnnotationTest.java](src/it/hello-world/src/test/java/example/hello/HelloServiceAnnotationTest.java)
+
 ## Credits
 
 There are two projects which inspired me to make this library:
