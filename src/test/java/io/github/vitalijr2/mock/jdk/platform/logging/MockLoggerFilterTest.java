@@ -35,7 +35,7 @@ class MockLoggerFilterTest {
 
   @DisplayName("Reject logger names which do not start with similar prefix")
   @ParameterizedTest
-  @ValueSource(strings = {"qwerty.abc123", "qwerty.xyz.xyz", "qwerty.ab.xyz",})
+  @ValueSource(strings = {"qwerty", "qwerty.abc123", "qwerty.xyz.xyz", "qwerty.ab.xyz",})
   void reject(String loggerName) {
     // given
     var qwertyAbcFilter = new MockLoggerFilter("qwerty.abc");
