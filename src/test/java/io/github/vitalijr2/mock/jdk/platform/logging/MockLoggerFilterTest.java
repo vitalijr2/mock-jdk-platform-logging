@@ -11,15 +11,26 @@ import org.junit.jupiter.params.provider.ValueSource;
 @Tag("fast")
 class MockLoggerFilterTest {
 
-  @DisplayName("Default filter: empty string")
+  @DisplayName("Default acceptance filter: empty string")
   @ParameterizedTest
   @ValueSource(strings = {"qwerty", "abc.xyz"})
-  void defaultFilter(String loggerName) {
+  void acceptanceFilter(String loggerName) {
     // given
     var defaultFilter = new MockLoggerFilter("");
 
     // when and then
     assertTrue(defaultFilter.test(loggerName.split("\\.")));
+  }
+
+  @DisplayName("Default rejection filter: null string")
+  @ParameterizedTest
+  @ValueSource(strings = {"qwerty", "abc.xyz"})
+  void rejectionFilter(String loggerName) {
+    // given
+    var defaultFilter = new MockLoggerFilter(null);
+
+    // when and then
+    assertFalse(defaultFilter.test(loggerName.split("\\.")));
   }
 
   @DisplayName("Accept logger names which start with similar prefix")

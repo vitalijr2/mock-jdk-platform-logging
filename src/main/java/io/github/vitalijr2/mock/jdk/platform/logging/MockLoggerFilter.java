@@ -17,28 +17,35 @@ package io.github.vitalijr2.mock.jdk.platform.logging;
 
 import java.util.function.Predicate;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Implements a simple match filter.
  * <p>
  * If a logger name starts with a prefix, that registrar is accepted. The logger name is interpreted as the full Java
  * class name, i.e. separated by dots.
+ * <p>
+ * An empty string is the default acceptance filter. A zero string is the default rejection filter.
  */
 class MockLoggerFilter implements Predicate<String[]> {
 
   private final String[] prefix;
 
-  MockLoggerFilter(@NotNull String prefix) {
-    this.prefix = prefix.split("\\.");
+  MockLoggerFilter(@Nullable String prefix) {
+    if (prefix == null) {
+      this.prefix = new String[0];
+    } else {
+      this.prefix = prefix.split("\\.");
+    }
   }
 
   @Override
   public boolean test(@NotNull String[] loggerName) {
+    if (prefix.length == 0 || loggerName.length < prefix.length) {
+      return false;
+    }
     if (prefix.length == 1 && prefix[0].isEmpty()) {
       return true;
-    }
-    if (loggerName.length < prefix.length) {
-      return false;
     }
 
     for (int i = 0; i < prefix.length; i++) {
