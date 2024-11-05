@@ -83,4 +83,16 @@ class MockLoggerFinderSlowTest {
     assertFalse(loggerFilter.test("abc.ij".split("\\.")));
   }
 
+  @DisplayName("Logger filter with defaults")
+  @Test
+  void loggerFilterWithDefaults() {
+    // when
+    var loggerFilter = MockLoggerFinder.craftLoggerFilters(null, null);
+
+    // then
+    assertTrue(loggerFilter.test("abc.qwerty.uv".split("\\.")));
+    assertTrue(loggerFilter.test("abc.qwerty.xyz.st".split("\\.")));
+    assertTrue(loggerFilter.test("abc.ij".split("\\.")));
+  }
+
 }
