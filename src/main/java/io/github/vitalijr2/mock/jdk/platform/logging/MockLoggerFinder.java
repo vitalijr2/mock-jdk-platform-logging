@@ -15,12 +15,23 @@
  */
 package io.github.vitalijr2.mock.jdk.platform.logging;
 
+import static java.util.Objects.requireNonNullElse;
 import static org.mockito.Mockito.mock;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.System.Logger;
 import java.lang.System.LoggerFinder;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.VisibleForTesting;
 
 /**
@@ -44,6 +55,8 @@ public class MockLoggerFinder extends LoggerFinder {
 
   private final Map<String, Logger> loggers;
 
+  private final Predicate<String[]> loggerFilters;
+
   /**
    * Create a map-based logger finder. The finder uses a concurrent map: a logger name is a key.
    */
@@ -54,6 +67,64 @@ public class MockLoggerFinder extends LoggerFinder {
   @VisibleForTesting
   MockLoggerFinder(Map<String, Logger> loggers) {
     this.loggers = loggers;
+
+    var configurationProperties = loadProperties("mock-loggers.properties");
+
+    loggerFilters = craftLoggerFilters(configurationProperties.getProperty("excludes"),
+        configurationProperties.getProperty("includes"));
+  }
+
+  /**
+   * Prepares sets of acceptance and rejection filters.
+   *
+   * @param excludes rejection comma-separated list
+   * @param includes acceptance comma-separated list
+   * @return filter predicate
+   */
+  @VisibleForTesting
+  static Predicate<String[]> craftLoggerFilters(@Nullable String excludes, @Nullable String includes) {
+    Set<MockLoggerFilter> excludeFilters;
+    Set<MockLoggerFilter> includeFilters;
+
+    if (excludes == null) {
+      // default rejection filter
+      excludeFilters = Collections.singleton(new MockLoggerFilter(null));
+    } else {
+      excludeFilters = Arrays.stream(excludes.split(",")).map(MockLoggerFilter::new).collect(Collectors.toSet());
+    }
+    if (includes == null) {
+      // default acceptance filter
+      includeFilters = Collections.singleton(new MockLoggerFilter(""));
+    } else {
+      includeFilters = Arrays.stream(includes.split(",")).map(MockLoggerFilter::new).collect(Collectors.toSet());
+    }
+
+    return splitLoggerName -> excludeFilters.stream().noneMatch(excludeFilter -> excludeFilter.test(splitLoggerName))
+        && includeFilters.stream().anyMatch(includeFilter -> includeFilter.test(splitLoggerName));
+  }
+
+  /**
+   * Loads configuration properties.
+   * <p>
+   * If a property file is not found that default acceptance filter is used.
+   *
+   * @param configurationFile filename
+   * @return configuration properties
+   */
+  @VisibleForTesting
+  static Properties loadProperties(String configurationFile) {
+    var fallbackInputStream = new ByteArrayInputStream("includes=".getBytes());
+
+    try (InputStream configurationInputStream = Thread.currentThread().getContextClassLoader()
+        .getResourceAsStream(configurationFile)) {
+      var properties = new Properties();
+
+      properties.load(requireNonNullElse(configurationInputStream, fallbackInputStream));
+
+      return properties;
+    } catch (IOException exception) {
+      throw new RuntimeException("Could not load configuration properties", exception);
+    }
   }
 
   /**
@@ -61,7 +132,7 @@ public class MockLoggerFinder extends LoggerFinder {
    *
    * @param name   logging name
    * @param module logging module
-   * @return mock logger
+   * @return logger, mock or real
    */
   @Override
   public Logger getLogger(String name, Module module) {

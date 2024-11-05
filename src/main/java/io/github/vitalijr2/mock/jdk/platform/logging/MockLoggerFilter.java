@@ -26,6 +26,8 @@ import org.jetbrains.annotations.Nullable;
  * class name, i.e. separated by dots.
  * <p>
  * An empty string is the default acceptance filter. A zero string is the default rejection filter.
+ *
+ * @since 1.2.0
  */
 class MockLoggerFilter implements Predicate<String[]> {
 
@@ -35,7 +37,7 @@ class MockLoggerFilter implements Predicate<String[]> {
     if (prefix == null) {
       this.prefix = new String[0];
     } else {
-      this.prefix = prefix.split("\\.");
+      this.prefix = prefix.trim().split("\\.");
     }
   }
 

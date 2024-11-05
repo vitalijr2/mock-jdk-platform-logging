@@ -36,9 +36,20 @@ class MockLoggerFilterTest {
   @DisplayName("Accept logger names which start with similar prefix")
   @ParameterizedTest
   @ValueSource(strings = {"qwerty.abc", "qwerty.abc.xyz"})
-  void accept(String loggerName) {
+  void acceptWithSimilarPrefix(String loggerName) {
     // given
     var qwertyAbcFilter = new MockLoggerFilter("qwerty.abc");
+
+    // when and then
+    assertTrue(qwertyAbcFilter.test(loggerName.split("\\.")));
+  }
+
+  @DisplayName("Prefix is trimmed")
+  @ParameterizedTest
+  @ValueSource(strings = {"qwerty.abc", "qwerty.abc.xyz"})
+  void prefixIsTrimmed(String loggerName) {
+    // given
+    var qwertyAbcFilter = new MockLoggerFilter("  qwerty.abc ");
 
     // when and then
     assertTrue(qwertyAbcFilter.test(loggerName.split("\\.")));
@@ -47,7 +58,7 @@ class MockLoggerFilterTest {
   @DisplayName("Reject logger names which do not start with similar prefix")
   @ParameterizedTest
   @ValueSource(strings = {"qwerty", "qwerty.abc123", "qwerty.xyz.xyz", "qwerty.ab.xyz",})
-  void reject(String loggerName) {
+  void rejectWithUnrelatedPrefix(String loggerName) {
     // given
     var qwertyAbcFilter = new MockLoggerFilter("qwerty.abc");
 

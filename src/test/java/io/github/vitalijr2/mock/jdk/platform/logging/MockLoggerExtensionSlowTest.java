@@ -26,8 +26,7 @@ class MockLoggerExtensionSlowTest {
       loggerFinder.when(LoggerFinder::getLoggerFinder).thenReturn(mock(LoggerFinder.class));
 
       // when
-      var exception = assertThrows(ExtensionConfigurationException.class,
-          MockLoggerExtension::getMockLoggerFinder);
+      var exception = assertThrows(ExtensionConfigurationException.class, MockLoggerExtension::getMockLoggerFinder);
 
       // then
       assertEquals("The logger finder is not a MockLoggerFinder", exception.getMessage());
