@@ -68,7 +68,6 @@ class MockLoggerExtensionFastTest {
         () -> assertEquals("Clean and reset the loggers: first, second", messageCaptor.getValue().get(),
             "logging message"), () -> assertFalse(firstLogger.isLoggable(Level.INFO)),
         () -> assertFalse(secondLogger.isLoggable(Level.INFO)));
-    ;
   }
 
   @DisplayName("Clean and reset loggers before each test")
