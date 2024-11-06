@@ -91,7 +91,8 @@ class MockLoggerFinderSlowTest {
       when(fallbackInputStream.read(isA(byte[].class))).thenThrow(new IOException("test exception"));
 
       // when
-      var exception = assertThrows(RuntimeException.class, () -> MockLoggerFinder.loadProperties("qwerty.properties"));
+      var exception = assertThrows(MockLoggerConfigurationException.class,
+          () -> MockLoggerFinder.loadProperties("qwerty.properties"));
 
       // then
       assertAll("IOException is thrown",

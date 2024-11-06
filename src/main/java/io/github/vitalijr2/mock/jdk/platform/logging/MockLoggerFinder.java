@@ -127,7 +127,7 @@ public class MockLoggerFinder extends LoggerFinder {
 
       return properties;
     } catch (IllegalArgumentException | IOException exception) {
-      throw new RuntimeException("Could not load configuration properties", exception);
+      throw new MockLoggerConfigurationException("Could not load configuration properties", exception);
     }
   }
 
