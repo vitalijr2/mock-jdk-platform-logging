@@ -31,6 +31,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.VisibleForTesting;
 
@@ -103,6 +104,11 @@ public class MockLoggerFinder extends LoggerFinder {
         && includeFilters.stream().anyMatch(includeFilter -> includeFilter.test(splitLoggerName));
   }
 
+  @VisibleForTesting
+  static InputStream fallbackInputStream() {
+    return new ByteArrayInputStream("includes=".getBytes());
+  }
+
   /**
    * Loads configuration properties.
    * <p>
@@ -112,17 +118,15 @@ public class MockLoggerFinder extends LoggerFinder {
    * @return configuration properties
    */
   @VisibleForTesting
-  static Properties loadProperties(String configurationFile) {
-    var fallbackInputStream = new ByteArrayInputStream("includes=".getBytes());
-
+  static @NotNull Properties loadProperties(@NotNull String configurationFile) {
     try (InputStream configurationInputStream = Thread.currentThread().getContextClassLoader()
         .getResourceAsStream(configurationFile)) {
       var properties = new Properties();
 
-      properties.load(requireNonNullElse(configurationInputStream, fallbackInputStream));
+      properties.load(requireNonNullElse(configurationInputStream, fallbackInputStream()));
 
       return properties;
-    } catch (IOException exception) {
+    } catch (IllegalArgumentException | IOException exception) {
       throw new RuntimeException("Could not load configuration properties", exception);
     }
   }

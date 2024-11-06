@@ -8,8 +8,10 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.StringStartsWith.startsWith;
 import static org.hamcrest.object.HasToString.hasToString;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.mockito.Mockito.mock;
 
+import java.io.IOException;
 import java.lang.System.Logger;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,6 +52,13 @@ class MockLoggerFinderFastTest {
     assertAll("Logger was reused", () -> assertThat("size", loggers, aMapWithSize(1)),
         () -> assertThat("entry", loggers, hasEntry(equalTo("test"), isA(Logger.class))),
         () -> assertThat(loggers.values().iterator().next(), hasToString(startsWith("Mock for Logger, hashCode:"))));
+  }
+
+  @DisplayName("Fallback input stream")
+  @Test
+  void fallbackInputStream() throws IOException {
+    // when and then
+    assertArrayEquals("includes=".getBytes(), MockLoggerFinder.fallbackInputStream().readAllBytes());
   }
 
 }

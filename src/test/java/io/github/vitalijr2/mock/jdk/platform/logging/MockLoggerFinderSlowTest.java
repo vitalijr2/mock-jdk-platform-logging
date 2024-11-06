@@ -4,11 +4,19 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.clearInvocations;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.when;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import org.junit.jupiter.api.AfterEach;
@@ -69,6 +77,28 @@ class MockLoggerFinderSlowTest {
     assertAll("Properties from fallback", () -> assertEquals(2, properties.size()),
         () -> assertEquals("test-include", properties.getProperty("includes")),
         () -> assertEquals("test-exclude", properties.getProperty("excludes")));
+  }
+
+  @DisplayName("Input/output exception")
+  @Test
+  void inputOutputException() throws IOException {
+    try (var loggerFinder = mockStatic(MockLoggerFinder.class)) {
+      // given
+      var fallbackInputStream = mock(InputStream.class);
+
+      loggerFinder.when(MockLoggerFinder::fallbackInputStream).thenReturn(fallbackInputStream);
+      loggerFinder.when(() -> MockLoggerFinder.loadProperties(anyString())).thenCallRealMethod();
+      when(fallbackInputStream.read(isA(byte[].class))).thenThrow(new IOException("test exception"));
+
+      // when
+      var exception = assertThrows(RuntimeException.class, () -> MockLoggerFinder.loadProperties("qwerty.properties"));
+
+      // then
+      assertAll("IOException is thrown",
+          () -> assertEquals("Could not load configuration properties", exception.getMessage()),
+          () -> assertEquals("test exception", exception.getCause().getMessage()));
+    }
+
   }
 
   @DisplayName("Logger filter")
