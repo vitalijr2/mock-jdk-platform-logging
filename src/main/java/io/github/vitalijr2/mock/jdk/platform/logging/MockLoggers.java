@@ -24,7 +24,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 /**
  * Registers {@link MockLoggerExtension} for a test class.
  *
- * @since 1.2.0
+ * @since 1.1.3
  */
 @ExtendWith(MockLoggerExtension.class)
 @Retention(RetentionPolicy.RUNTIME)

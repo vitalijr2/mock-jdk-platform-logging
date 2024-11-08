@@ -105,7 +105,7 @@ class HelloServiceExtensionTest {
 ```
 See more details at [HelloServiceExtensionTest.java](src/it/hello-world/src/test/java/example/hello/HelloServiceExtensionTest.java)
 
-Since the version **1.2.0** you can use the annotation for automation.
+Since the version **1.1.3** you can use the annotation for automation.
 ```java
 @MockLoggers
 class HelloServiceAnnotationTest {
