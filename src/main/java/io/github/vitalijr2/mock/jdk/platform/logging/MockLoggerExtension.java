@@ -30,8 +30,9 @@ import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 
 /**
- * jUnit extension to clean and reset mock loggers. Clean and reset mock loggers before and after tests. You are still
- * able to run tasks in {@link org.junit.jupiter.api.BeforeEach} and {@link org.junit.jupiter.api.AfterEach}.
+ * A jUnit extension to clean and reset mock loggers.
+ * <p>
+ * Clean and reset mock loggers before and after tests.
  * <p>
  * Example:
  * <pre><code class="language-java">
@@ -85,6 +86,7 @@ public class MockLoggerExtension implements AfterEachCallback, BeforeEachCallbac
   @VisibleForTesting
   static MockLoggerFinder getMockLoggerFinder() {
     var loggerFinder = LoggerFinder.getLoggerFinder();
+
     if (loggerFinder instanceof MockLoggerFinder) {
       return (MockLoggerFinder) loggerFinder;
     } else {
@@ -101,6 +103,7 @@ public class MockLoggerExtension implements AfterEachCallback, BeforeEachCallbac
   @Override
   public void afterEach(ExtensionContext context) {
     var processedLoggers = cleanAndResetLoggers();
+
     extensionLogger.debug(() -> "Clean and reset the loggers: " + String.join(", ", processedLoggers));
   }
 
@@ -113,16 +116,19 @@ public class MockLoggerExtension implements AfterEachCallback, BeforeEachCallbac
   @Override
   public void beforeEach(ExtensionContext context) {
     var processedLoggers = cleanAndResetLoggers();
+
     extensionLogger.debug(() -> "Clean and reset the loggers: " + String.join(", ", processedLoggers));
   }
 
   private List<String> cleanAndResetLoggers() {
     var processedLoggers = new ArrayList<String>();
+
     loggerFinder.getLoggers().forEach((loggerName, logger) -> {
       clearInvocations(logger);
       reset(logger);
       processedLoggers.add(loggerName);
     });
+
     return processedLoggers;
   }
 
