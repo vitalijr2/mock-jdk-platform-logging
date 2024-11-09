@@ -1,0 +1,25 @@
+name: "Check release"
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+
+permissions: read-all
+
+jobs:
+  build:
+    name: Maven build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: 11
+      - name: Build with Maven
+        run: ./mvnw --batch-mode -s .mvn/ci_settings.xml -DskipTests -DskipPublishing -Prun-its,release
