@@ -52,7 +52,7 @@ import org.junit.platform.commons.logging.LoggerFactory;
  *     void names(String name) {
  *         var helloService = new HelloService();
  *
- *         assertDoesNotThrow(() -> helloService.sayHello(name));
+ *         assertDoesNotThrow(() -&lt; helloService.sayHello(name));
  *
  *         var logger = System.getLogger("HelloService");
  *
