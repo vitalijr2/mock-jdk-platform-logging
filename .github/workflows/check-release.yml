@@ -2,8 +2,6 @@ name: "Check release"
 
 on:
   push:
-    branches:
-      - master
     tags:
       - v*
 
@@ -22,4 +20,4 @@ jobs:
           distribution: 'corretto'
           java-version: 11
       - name: Build with Maven
-        run: ./mvnw --batch-mode -s .mvn/ci_settings.xml -DskipTests -DskipPublishing -Prun-its,release
+        run: ./mvnw --batch-mode -s .mvn/ci_settings.xml -ntp -DskipTests -DskipPublishing -Prun-its,release
