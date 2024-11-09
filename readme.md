@@ -23,7 +23,7 @@ Just put a test dependency to your POM:
     <artifactId>mock-jdk-platform-logging</artifactId>
     <groupId>io.github.vitalijr2.logging</groupId>
     <scope>test</scope>
-    <version>1.1.2</version>
+    <version>1.1.3</version>
 </dependency>
 ```
 
