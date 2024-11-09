@@ -100,5 +100,35 @@
 
     }
 </code></pre>
+<p>
+  Since the version <strong>1.1.3</strong> you can use the annotation for automation.
+</p>
+<pre><code class="language-java">
+    {@literal @}MockLoggers
+    class HelloServiceAnnotationTest {
+
+        private static Logger logger;
+
+        {@literal @}BeforeAll
+        static void setUpClass() {
+            logger = System.getLogger("HelloService");
+        }
+
+        {@literal @}DisplayName("Names")
+        {@literal @}ParameterizedTest(name = "&lt;{0}&gt;")
+        {@literal @}ValueSource(strings = {"John", "Jane"})
+        void names(String name) {
+            var helloService = new HelloService();
+
+            assertDoesNotThrow(() -&gt; helloService.sayHello(name));
+
+            var logger = System.getLogger("HelloService");
+
+            verify(logger).log(Level.INFO, "Hello " + name + "!");
+            verifyNoMoreInteractions(logger);
+        }
+
+    }
+</code></pre>
 </body>
 </html>
