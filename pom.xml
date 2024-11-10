@@ -2,7 +2,7 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <artifactId>mock-jdk-platform-logging</artifactId>
+  <artifactId>mock-loggers</artifactId>
   <build>
     <defaultGoal>clean verify</defaultGoal>
     <pluginManagement>
@@ -304,6 +304,13 @@
       <scope>provided</scope>
       <version>26.0.1</version>
     </dependency>
+    <!-- optional -->
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <scope>provided</scope>
+      <version>1.3.4</version>
+    </dependency>
     <!-- test -->
     <dependency>
       <artifactId>junit-jupiter-engine</artifactId>
@@ -345,7 +352,10 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-  <description>JDK Platform Logging Service with mock loggers backed by Mockito.</description>
+  <description>
+    Different logging services with mock loggers backed by Mockito.
+    Now this library implements JDK Platform Logging and Apache Commons Logging.
+  </description>
   <developers>
     <developer>
       <email>vitalij_r2@outlook.com</email>
@@ -370,7 +380,7 @@
     </license>
   </licenses>
   <modelVersion>4.0.0</modelVersion>
-  <name>Mock of JDK Platform Logging</name>
+  <name>Mock Loggers</name>
   <profiles>
     <profile>
       <build>
@@ -462,5 +472,5 @@
     <url>https://github.com/vitalijr2/mock-jdk-platform-logging</url>
   </scm>
   <url>https://github.com/vitalijr2/mock-jdk-platform-logging</url>
-  <version>1.1.3</version>
+  <version>1.2.0-SNAPSHOT</version>
 </project>

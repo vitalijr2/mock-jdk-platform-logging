@@ -1,6 +1,9 @@
-# Mock of JDK Platform Logging
+# Mock Loggers
 
-JDK Platform Logging Service with mock loggers backed by [Mockito][].
+Different logging services with mock loggers backed by [Mockito][].
+Now this library implements [JDK Platform Logging][jdk-logging] and [Apache Commons Logging][commons-logging].
+
+**WARNING:** this library does not support _parallel test execution_.
 
 [![Java Version][java-version]][jdk-download]
 ![jUnit Version][junit-version]
@@ -20,10 +23,10 @@ JDK Platform Logging Service with mock loggers backed by [Mockito][].
 Just put a test dependency to your POM:
 ```xml
 <dependency>
-    <artifactId>mock-jdk-platform-logging</artifactId>
+    <artifactId>mock-loggers</artifactId>
     <groupId>io.github.vitalijr2.logging</groupId>
     <scope>test</scope>
-    <version>1.1.3</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
@@ -169,6 +172,10 @@ limitations under the License.
 [Apache License v2.0](LICENSE)  
 
 [Mockito]: https://site.mockito.org
+
+[jdk-logging]: https://www.baeldung.com/java-9-logging-api "Java Platform Logging API"
+
+[commons-logging]: https://commons.apache.org/proper/commons-logging/
 
 [github-master-check-runs]: https://img.shields.io/github/check-runs/vitalijr2/mock-jdk-platform-logging/master
 

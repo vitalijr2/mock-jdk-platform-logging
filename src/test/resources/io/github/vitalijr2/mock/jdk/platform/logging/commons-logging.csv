@@ -1,0 +1,7 @@
+level, message,trace count,debug count,info count,warning count,error count,fatal count,log name
+TRACE, test trace message,1,0,0,0,0,0,io.github.vitalijr2.mock.jdk.platform.logging.MockLoggerFactorySlowTest
+DEBUG, test debug message,0,1,0,0,0,0,io.github.vitalijr2.mock.jdk.platform.logging.MockLoggerFactorySlowTest
+INFO, test info message,0,0,1,0,0,0,io.github.vitalijr2.mock.jdk.platform.logging.MockLoggerFactorySlowTest
+WARNING, test warning message,0,0,0,1,0,0,io.github.vitalijr2.mock.jdk.platform.logging.MockLoggerFactorySlowTest
+ERROR, test error message,0,0,0,0,1,0,io.github.vitalijr2.mock.jdk.platform.logging.MockLoggerFactorySlowTest
+FATAL, test fatal message,0,0,0,0,0,1,io.github.vitalijr2.mock.jdk.platform.logging.MockLoggerFactorySlowTest
