@@ -20,4 +20,7 @@ jobs:
           distribution: 'corretto'
           java-version: 11
       - name: Build with Maven
+        env:
+          SIGN_KEY: ${{ secrets.SIGN_KEY }}
+          SIGN_KEY_PASS: ${{ secrets.SIGN_KEY_PASS }}
         run: ./mvnw --batch-mode -s .mvn/ci_settings.xml -ntp -DskipTests -DskipPublishing -Prun-its,release
