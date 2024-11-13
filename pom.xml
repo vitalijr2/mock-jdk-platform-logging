@@ -355,6 +355,14 @@
       <url>https://github.com/vitalijr2</url>
     </developer>
   </developers>
+  <distributionManagement>
+    <relocation>
+      <artifactId>mock-loggers-jdk-platform-logging</artifactId>
+      <groupId>io.github.vitalijr2.logging</groupId>
+      <message>Different logging services can be tested using mock loggers backed by Mockito.</message>
+      <version>1.0.0</version>
+    </relocation>
+  </distributionManagement>
   <groupId>io.github.vitalijr2.logging</groupId>
   <inceptionYear>2024</inceptionYear>
   <issueManagement>
@@ -462,5 +470,5 @@
     <url>https://github.com/vitalijr2/mock-jdk-platform-logging</url>
   </scm>
   <url>https://github.com/vitalijr2/mock-jdk-platform-logging</url>
-  <version>1.1.3</version>
+  <version>1.1.4</version>
 </project>
